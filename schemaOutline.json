@@ -14,7 +14,6 @@
 {
   "userId": "number auto inc",
   "userName": "string",
-  "profileUrl": "string",
   "profileImageUrl": "string",
   "friendsCount": "number",
   "reviewsCount": "number",
@@ -23,7 +22,5 @@
 // BUSINESS
 {
   "bussinessId": "number auto inc",
-  "imagesUrl": "string",
-  "businessName": "string",
-  "businessUrl": "string"
+  "businessName": "string"
 }
