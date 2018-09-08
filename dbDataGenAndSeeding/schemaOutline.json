@@ -1,0 +1,24 @@
+{
+  "photo": {
+    "imageId": "number auto inc",
+    "businessId": "number/foreign key business",
+    "imageUploaderId": "number/foreign key users",
+    "imageUrl": "string",
+    "imageUploadDate": "date",
+    "imageComment": "string",
+    "helpfulCount": "number",
+    "reported": "boolean"
+  },
+  "user": {
+    "userId": "number auto inc",
+    "userName": "string",
+    "profileImageUrl": "string",
+    "friendsCount": "number",
+    "reviewsCount": "number",
+    "eliteStatus": "boolean"
+  },
+  "business": {
+    "businessId": "number auto inc",
+    "businessName": "string"
+  }
+}
