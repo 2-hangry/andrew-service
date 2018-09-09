@@ -14,8 +14,8 @@ connection.connect((err) => {
   }
 });
 
-const retrieveUsers = (idList, cb) => {
-  sql.query(`SELECT * FROM users WHERE id IN (${idList.join(',')})`, (err, results) => {
+const retrieveUsers = (userIdList, cb) => {
+  sql.query(`SELECT * FROM users WHERE id IN (${userIdList.join(',')})`, (err, results) => {
     if (err) {
       cb(err);
     } else {
@@ -44,12 +44,27 @@ const retrievePhotos = (businessId, cb) => {
   });
 };
 
-const updateReported = () => {
-  sql.query();
+const updateReported = (photoId, cb) => {
+  sql.query(`UPDATE photos SET reported = 1 WHERE id = ${photoId}`, (err, res, fields) => {
+    if (err) {
+      cb(err);
+    } else {
+      cb(fields);
+    }
+  });
 };
 
-const updateHelpfulCount = () => {
-  sql.query();
+const updateHelpfulCount = (photoId, cb) => {
+  sql.query(
+    `UPDATE photos SET helpfulCount = helpfulCount + 1 WHERE id = ${photoId}`,
+    (err, res, fields) => {
+      if (err) {
+        cb(err);
+      } else {
+        cb(fields);
+      }
+    },
+  );
 };
 
 module.exports = {
