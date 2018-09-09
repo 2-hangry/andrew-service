@@ -25,7 +25,7 @@ CREATE TABLE photos (
   businessId int NOT NULL,
   imageUploaderId int NOT NULL,
   imageUrl mediumtext NOT NULL,
-  imageUploadDate datetime NOT NULL,
+  imageUploadDate tinytext NOT NULL,
   imageComment mediumtext NOT NULL,
   helpfulCount int NOT NULL,
   reported boolean NOT NULL,
