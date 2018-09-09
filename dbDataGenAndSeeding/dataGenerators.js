@@ -22,7 +22,7 @@ const makePhotos = () => {
 // <------------------------ CSV text generating script for user table ------------------->
 
 const makeUser = () => (
-  `${faker.name.findName()},${faker.image.avatar()},${faker.random.number(1000)},${faker.random.number(500)},${faker.random.boolean()}`
+  `${faker.name.findName()},${faker.image.avatar()},${faker.random.number(1000)},${faker.random.number(500)},${faker.random.number(1)}`
 );
 
 const makeUsers = () => {
