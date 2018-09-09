@@ -8,7 +8,8 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "generateData": "node ./dbDataGenAndSeeding/dataGenerators.js"
+    "generateData": "node ./dbDataGenAndSeeding/dataGenerators.js",
+    "seed-db": "mysql -uroot --local-infile photo_carousel < ./dbDataGenAndSeeding/schema.sql"
   },
   "dependencies": {
     "axios": "^0.18.0",
