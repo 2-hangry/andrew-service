@@ -1,12 +1,13 @@
 const sql = require('mysql');
 
-const connection = sql.createConnection({
+const db = sql.createConnection({
   host: '127.0.0.1',
   user: 'root',
   password: '',
+  database: 'photo_carousel',
 });
 
-connection.connect((err) => {
+db.connect((err) => {
   if (err) {
     console.log(err);
   } else {
@@ -14,58 +15,58 @@ connection.connect((err) => {
   }
 });
 
-const retrieveUsers = (userIdList, cb) => {
-  sql.query(`SELECT * FROM users WHERE id IN (${userIdList.join(',')})`, (err, results) => {
+const retrieveUsers = userIdList => new Promise((res, rej) => {
+  db.query(`SELECT * FROM users WHERE id IN (${userIdList.join(',')})`, (err, results) => {
     if (err) {
-      cb(err);
+      rej(err);
     } else {
-      cb(results);
+      res(results);
     }
   });
-};
+});
 
-const retrieveBusiness = (id, cb) => {
-  sql.query(`SELECT * FROM businesses WHERE id = ${id}`, (err, results) => {
+const retrieveBusiness = id => new Promise((res, rej) => {
+  db.query(`SELECT businessName FROM businesses WHERE id = ${id}`, (err, results) => {
     if (err) {
-      cb(err);
+      rej(err);
     } else {
-      cb(results);
+      res(results);
     }
   });
-};
+});
 
-const retrievePhotos = (businessId, cb) => {
-  sql.query(`SELECT * FROM photos WHERE businessId = ${businessId}`, (err, results) => {
+const retrievePhotos = businessId => new Promise((res, rej) => {
+  db.query(`SELECT * FROM photos WHERE businessId = ${businessId}`, (err, results) => {
     if (err) {
-      cb(err);
+      rej(err);
     } else {
-      cb(results);
+      res(results);
     }
   });
-};
+});
 
-const updateReported = (photoId, cb) => {
-  sql.query(`UPDATE photos SET reported = 1 WHERE id = ${photoId}`, (err, res, fields) => {
+const updateReported = photoId => new Promise((res, rej) => {
+  db.query(`UPDATE photos SET reported = 1 WHERE id = ${photoId}`, (err, results, fields) => {
     if (err) {
-      cb(err);
+      rej(err);
     } else {
-      cb(fields);
+      res(fields);
     }
   });
-};
+});
 
-const updateHelpfulCount = (photoId, cb) => {
-  sql.query(
+const updateHelpfulCount = photoId => new Promise((res, rej) => {
+  db.query(
     `UPDATE photos SET helpfulCount = helpfulCount + 1 WHERE id = ${photoId}`,
-    (err, res, fields) => {
+    (err, results, fields) => {
       if (err) {
-        cb(err);
+        rej(err);
       } else {
-        cb(fields);
+        res(fields);
       }
     },
   );
-};
+});
 
 module.exports = {
   retrieveUsers,
