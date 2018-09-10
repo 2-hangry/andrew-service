@@ -11,31 +11,19 @@ app.use(bp.urlencoded({ extended: true }));
 app.get('/businesses/business-id/images', (req, res) => {
   resBuilder
     .buildGetResponse(req.query.id)
-    .then((data) => {
-      res.json(data);
-    })
-    .catch((err) => {
-      res.send(err);
-    });
+    .then(data => res.json(data))
+    .catch(err => res.send(err));
 });
 
 app.post('/businesses/business-id/images', (req, res) => {
   if (req.body.type === 'helpful') {
     db.updateHelpfulCount(req.body.id)
-      .then((data) => {
-        res.json(data);
-      })
-      .catch((err) => {
-        res.send(err);
-      });
+      .then(data => res.json(data))
+      .catch(err => res.send(err));
   } else if (req.body.type === 'report') {
     db.updateReported(req.body.id)
-      .then((data) => {
-        res.json(data);
-      })
-      .catch((err) => {
-        res.send(err);
-      });
+      .then(data => res.json(data))
+      .catch(err => res.send(err));
   } else {
     res.end('Invalid request type');
   }
