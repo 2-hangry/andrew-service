@@ -6,9 +6,7 @@ const buildGetResponse = async (id) => {
 
   const photoUserIds = [];
 
-  photos.forEach((photo) => {
-    photoUserIds.push(photo.imageUploaderId);
-  });
+  photos.forEach(photo => photoUserIds.push(photo.imageUploaderId));
 
   const users = db.retrieveUsers(photoUserIds);
 
