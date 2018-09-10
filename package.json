@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "generateData": "node ./dbDataGenAndSeeding/dataGenerators.js",
+    "generate-data": "node ./dbDataGenAndSeeding/dataGenerators.js",
     "seed-db": "mysql -uroot --local-infile photo_carousel < ./schema.sql",
     "start": "nodemon ./server/index.js"
   },
