@@ -9,7 +9,7 @@
   },
   "scripts": {
     "generateData": "node ./dbDataGenAndSeeding/dataGenerators.js",
-    "seed-db": "mysql -uroot --local-infile photo_carousel < ./dbDataGenAndSeeding/schema.sql",
+    "seed-db": "mysql -uroot --local-infile photo_carousel < ./schema.sql",
     "start": "nodemon ./server/index.js"
   },
   "dependencies": {
