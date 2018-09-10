@@ -50,7 +50,10 @@ const updateReported = photoId => new Promise((res, rej) => {
     if (err) {
       rej(err);
     } else {
-      res(fields);
+      res({
+        results,
+        fields,
+      });
     }
   });
 });
@@ -62,7 +65,10 @@ const updateHelpfulCount = photoId => new Promise((res, rej) => {
       if (err) {
         rej(err);
       } else {
-        res(fields);
+        res({
+          results,
+          fields,
+        });
       }
     },
   );
