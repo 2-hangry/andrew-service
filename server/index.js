@@ -4,11 +4,11 @@ const resBuilder = require('./responseBuilders');
 const db = require('../db/index');
 
 const port = process.env.PORT || 3000;
-const dirPath = path.join(__dirname, '/../public/dist');
+const DIR_PATH = path.join(__dirname, '/../public/dist');
 
 const app = express();
 
-app.use(express.static(dirPath));
+app.use(express.static(DIR_PATH));
 
 app.get('/businesses/:id/images', (req, res) => {
   resBuilder
