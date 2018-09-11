@@ -2,7 +2,7 @@ import React from 'react';
 
 const PictureCarousel = ({ picture, data }) => (
   <div>
-    <h1>{picture}</h1>
+    <img src={data.photos[picture].imageUrl} alt="business food or service" />
   </div>
 );
 

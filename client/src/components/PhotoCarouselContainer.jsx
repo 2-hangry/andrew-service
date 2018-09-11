@@ -38,6 +38,9 @@ export default class PhotoCarouselContainer extends Component {
     const { data } = this.props;
     const { pictureIdx } = this.state;
 
+    if (data === undefined) {
+      return <div>Loading...</div>;
+    }
     return (
       <div>
         <button type="button" id="left-button" onClick={() => this.handleLeftButtonClick()} />

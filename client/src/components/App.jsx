@@ -7,9 +7,7 @@ export default class App extends Component {
     super(props);
     this.url = 'http://localhost:3000';
 
-    this.state = {
-      businessId: 1,
-    };
+    this.state = {};
 
     this.changeDisplayedBusiness = this.changeDisplayedBusiness.bind(this);
   }
@@ -18,19 +16,9 @@ export default class App extends Component {
     this.getBusinessData();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { businessId } = this.state;
-
-    if (businessId !== prevState.businessId) {
-      this.getBusinessData();
-    }
-  }
-
-  getBusinessData() {
-    const { businessId } = this.state;
-
+  getBusinessData(id = 1) {
     axios
-      .get(`${this.url}/businesses/${businessId}/images`)
+      .get(`${this.url}/businesses/${id}/images`)
       .then((response) => {
         this.setState({
           data: response.data,
@@ -41,7 +29,7 @@ export default class App extends Component {
 
   changeDisplayedBusiness(id) {
     this.setState({
-      businessId: Number(id),
+      data: this.getBusinessData(id),
     });
   }
 
