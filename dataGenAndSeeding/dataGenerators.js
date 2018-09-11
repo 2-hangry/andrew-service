@@ -3,9 +3,9 @@ const fs = require('fs');
 
 // <------------------------ CSV text generating script for photo table ------------------->
 
-const makePhoto = () => (
-  `${faker.random.number(100)},${faker.random.number(50)},${faker.image.food()},${faker.date.past(5)},${faker.lorem.sentence(10)},${faker.random.number(50)},false`
-);
+const makePhoto = () => `${faker.random.number(100)},${faker.random.number(50)},${faker.image.food()},${faker.date.past(
+  5,
+)},${faker.lorem.sentence(10)},${faker.random.number(50)},false`;
 
 const makePhotos = () => {
   let photosCSV = 'businessId,imageUploaderId,imageUrl,imageUploadDate,imageComment,helpfulCount,reported\n';
@@ -21,9 +21,9 @@ const makePhotos = () => {
 
 // <------------------------ CSV text generating script for user table ------------------->
 
-const makeUser = () => (
-  `${faker.name.findName()},${faker.image.avatar()},${faker.random.number(1000)},${faker.random.number(500)},${faker.random.number(1)}`
-);
+const makeUser = () => `${faker.name.findName()},${faker.image.avatar()},${faker.random.number(
+  1000,
+)},${faker.random.number(500)},${faker.random.number(1)}`;
 
 const makeUsers = () => {
   let usersCSV = 'userName,profileImageUrl,friendsCount,reviewsCount,eliteStatus\n';
@@ -39,9 +39,7 @@ const makeUsers = () => {
 
 // <------------------------ CSV text generating script for business table ------------------->
 
-const makeBusiness = () => (
-  `${faker.company.companyName(0)}`
-);
+const makeBusiness = () => `${faker.company.companyName(0)}`;
 
 const makeBusinesses = () => {
   let businessesCSV = 'businessName\n';
