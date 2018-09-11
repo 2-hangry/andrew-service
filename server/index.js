@@ -4,7 +4,7 @@ const resBuilder = require('./responseBuilders');
 const db = require('../db/index');
 
 const port = process.env.PORT || 3000;
-const dirPath = path.join(__dirname, '/../public');
+const dirPath = path.join(__dirname, '/../public/dist');
 
 const app = express();
 
