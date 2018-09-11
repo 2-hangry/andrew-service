@@ -1,4 +1,4 @@
-const db = require('../db/controllers');
+const db = require('../db/index');
 
 const buildGetResponse = async (id) => {
   const business = db.retrieveBusiness(id);

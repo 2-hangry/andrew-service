@@ -1,8 +1,14 @@
 const express = require('express');
+const path = require('path');
 const resBuilder = require('./responseBuilders');
-const db = require('../db/controllers');
+const db = require('../db/index');
+
+const port = process.env.PORT || 3000;
+const dirPath = path.join(__dirname, '/../public');
 
 const app = express();
+
+app.use(express.static(dirPath));
 
 app.get('/businesses/:id/images', (req, res) => {
   resBuilder
@@ -23,4 +29,4 @@ app.post('/businesses/:id/images/report', (req, res) => {
     .catch(err => res.send(err));
 });
 
-app.listen(3000, () => console.log('listening on port 3000'));
+app.listen(port, () => console.log('listening on port 3000'));
