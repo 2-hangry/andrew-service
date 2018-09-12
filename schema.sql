@@ -34,19 +34,19 @@ CREATE TABLE photos (
   PRIMARY KEY (id)
 );
 
-LOAD DATA LOCAL INFILE './csvFiles/users.csv' INTO TABLE users
+LOAD DATA LOCAL INFILE './dataGenAndSeeding/csvFiles/users.csv' INTO TABLE users
 FIELDS TERMINATED BY ','
 IGNORE 1 LINES
 (userName,profileImageUrl,friendsCount,reviewsCount,eliteStatus)
 SET id = NULL;
 
-LOAD DATA LOCAL INFILE './csvFiles/businesses.csv' INTO TABLE businesses
+LOAD DATA LOCAL INFILE './dataGenAndSeeding/csvFiles/businesses.csv' INTO TABLE businesses
 FIELDS TERMINATED BY ','
 IGNORE 1 LINES
 (businessName)
 SET id = NULL;
 
-LOAD DATA LOCAL INFILE './csvFiles/photos.csv' INTO TABLE photos
+LOAD DATA LOCAL INFILE './dataGenAndSeeding/csvFiles/photos.csv' INTO TABLE photos
 FIELDS TERMINATED BY ','
 IGNORE 1 LINES
 (businessId,imageUploaderId,imageUrl,imageUploadDate,imageComment,helpfulCount,reported)
