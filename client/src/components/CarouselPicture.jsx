@@ -1,9 +1,19 @@
 import React from 'react';
+import classNames from 'classnames';
 
-const PictureCarousel = ({ picture, data }) => (
-  <div>
-    <img src={data.photos[picture].imageUrl} alt="business food or service" />
-  </div>
-);
+const CarouselPicture = ({ photo, focusState }) => {
+  const pictureContainerClass = classNames('carouselPhotoContainer');
+  const pictureClass = classNames({
+    carouselPhoto: true,
+    hover: true,
+    focus: focusState,
+  });
 
-export default PictureCarousel;
+  return (
+    <div className={pictureContainerClass}>
+      <img className={pictureClass} src={photo.imageUrl} alt="business food or service" />
+    </div>
+  );
+};
+
+export default CarouselPicture;

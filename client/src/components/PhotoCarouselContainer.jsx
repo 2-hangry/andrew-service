@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CarouselPicture from './CarouselPicture';
+import PhotoCarousel from './PhotoCarousel';
 
 export default class PhotoCarouselContainer extends Component {
   constructor(props) {
@@ -7,10 +7,12 @@ export default class PhotoCarouselContainer extends Component {
 
     this.state = {
       pictureIdx: 0,
+      defaultFocusState: true,
     };
 
     this.handleLeftButtonClick = this.handleLeftButtonClick.bind(this);
     this.handleRightButtonClick = this.handleRightButtonClick.bind(this);
+    this.changeFocusState = this.changeFocusState.bind(this);
   }
 
   handleLeftButtonClick() {
@@ -27,28 +29,37 @@ export default class PhotoCarouselContainer extends Component {
     const { pictureIdx } = this.state;
     const { data } = this.props;
 
-    if (pictureIdx + 2 < data.photos.length) {
+    if (pictureIdx + 2 < data.photos.length - 1) {
       this.setState({
         pictureIdx: pictureIdx + 1,
       });
     }
   }
 
+  changeFocusState() {
+    const { defaultFocusState } = this.state;
+
+    this.setState({
+      defaultFocusState: !defaultFocusState,
+    });
+  }
+
   render() {
     const { data } = this.props;
-    const { pictureIdx } = this.state;
+    const { pictureIdx, defaultFocusState } = this.state;
 
     if (data === undefined) {
       return <div>Loading...</div>;
     }
     return (
-      <div>
-        <button type="button" id="left-button" onClick={() => this.handleLeftButtonClick()} />
-        <CarouselPicture picture={pictureIdx} data={data} />
-        <CarouselPicture picture={pictureIdx + 1} data={data} />
-        <CarouselPicture picture={pictureIdx + 2} data={data} />
-        <button type="button" id="right-button" onClick={() => this.handleRightButtonClick()} />
-      </div>
+      <PhotoCarousel
+        pictureIdx={pictureIdx}
+        data={data}
+        focusState={defaultFocusState}
+        changeFocusState={this.changeFocusState}
+        handleLeftButtonClick={this.handleLeftButtonClick}
+        handleRightButtonClick={this.handleRightButtonClick}
+      />
     );
   }
 }

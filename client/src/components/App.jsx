@@ -38,13 +38,16 @@ export default class App extends Component {
 
     return (
       <div>
-        <input id="businessId" type="number" min="1" max="100" defaultValue="1" />
-        <button
-          type="button"
-          onClick={() => this.changeDisplayedBusiness(document.getElementById('businessId').value)}
-        >
-          Go to business
-        </button>
+        <div id="bizSwitch">
+          <input id="businessId" type="number" min="1" max="100" defaultValue="1" />
+          <button
+            type="button"
+            onClick={() => this.changeDisplayedBusiness(document.getElementById('businessId').value)
+            }
+          >
+            Go to business
+          </button>
+        </div>
         <PhotoCarouselContainer data={data} />
       </div>
     );
