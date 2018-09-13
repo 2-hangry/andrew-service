@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 
 import App from '../../../client/src/components/App';
 
@@ -8,3 +8,5 @@ describe('<App />', () => {
     mount(<App />);
   });
 });
+
+// sorry i got stuck on a bunch of bugs trying to get jest and enzyme set up. I will get more tests written asap tomorrow now that its all working
