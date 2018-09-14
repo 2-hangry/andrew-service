@@ -8,11 +8,11 @@ const buildGetResponse = async (id) => {
 
   photos.forEach(photo => photoUserIds.push(photo.imageUploaderId));
 
-  const users = db.retrieveUsers(photoUserIds);
+  const users = await db.retrieveUsers(photoUserIds);
 
   return {
     business: await business,
-    users: await users,
+    users,
     photos,
   };
 };
