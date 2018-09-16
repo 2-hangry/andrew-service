@@ -8,9 +8,7 @@ export default class App extends Component {
     super(props);
     this.url = 'http://localhost:3000';
 
-    this.state = {
-      modalIsDisplayed: false,
-    };
+    this.state = { modalIsDisplayed: false };
 
     this.changeDisplayedBusiness = this.changeDisplayedBusiness.bind(this);
     this.showPhotosModal = this.showPhotosModal.bind(this);
