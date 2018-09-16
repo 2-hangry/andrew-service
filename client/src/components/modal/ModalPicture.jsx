@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import ModalPictureBanner from './ModalPictureBanner';
 
 const ModalPicture = ({
   photo,
@@ -7,7 +8,7 @@ const ModalPicture = ({
   handleLeftArrowClick,
   updateImageReported,
   pictureIdx,
-  photosSize,
+  pictureCount,
 }) => {
   const leftButtonClass = classNames({
     modalPictureButton: true,
@@ -17,7 +18,7 @@ const ModalPicture = ({
   const rightButtonClass = classNames({
     modalPictureButton: true,
     rightModalButton: true,
-    end: pictureIdx === photosSize - 1,
+    end: pictureIdx === pictureCount - 1,
   });
 
   return (
@@ -25,6 +26,12 @@ const ModalPicture = ({
       <button className={leftButtonClass} type="button" onClick={handleLeftArrowClick} />
       <img src={photo.imageUrl} alt="user submitted" />
       <button className={rightButtonClass} type="button" onClick={handleRightArrowClick} />
+      <ModalPictureBanner
+        pictureCount={pictureCount}
+        pictureIdx={pictureIdx}
+        updateImageReported={updateImageReported}
+        isReported={photo.reported}
+      />
     </div>
   );
 };

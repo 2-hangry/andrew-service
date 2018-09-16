@@ -6,16 +6,14 @@ export default class ModalPictureContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.updatedImageReported = this.updatedImageReported.bind(this);
+    this.updateImageReported = this.updateImageReported.bind(this);
   }
 
-  updatedImageReported() {
+  updateImageReported() {
     const { url, photo } = this.props;
     axios
-      .post(`${url}/images/${photo.imageId}/report`)
-      .then(() => {
-        photo.reported = 1;
-      })
+      .post(`${url}/images/${photo.id}/report`)
+      .then(() => {})
       .catch(err => console.error(err));
   }
 
@@ -25,7 +23,7 @@ export default class ModalPictureContainer extends Component {
       handleRightArrowClick,
       handleLeftArrowClick,
       pictureIdx,
-      photosSize,
+      pictureCount,
     } = this.props;
 
     return (
@@ -33,9 +31,9 @@ export default class ModalPictureContainer extends Component {
         photo={photo}
         handleRightArrowClick={handleRightArrowClick}
         handleLeftArrowClick={handleLeftArrowClick}
-        updatedImageReported={this.updatedImageReported}
+        updateImageReported={this.updateImageReported}
         pictureIdx={pictureIdx}
-        photosSize={photosSize}
+        pictureCount={pictureCount}
       />
     );
   }

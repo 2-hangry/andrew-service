@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ModalPictureContainer from './ModalPicture';
-import ModalInfoContainer from './ModalInfoContainer';
+import ModalPictureContainer from './ModalPictureContainer';
+import ModalInfo from './ModalInfo';
 
 export default class PhotosModal extends Component {
   constructor(props) {
@@ -21,8 +21,6 @@ export default class PhotosModal extends Component {
     if (pictureIdx < data.photos.length - 1) {
       this.setState({ pictureIdx: (pictureIdx += 1) });
     }
-
-    console.log('called');
   }
 
   handleLeftArrowClick() {
@@ -31,15 +29,22 @@ export default class PhotosModal extends Component {
     if (pictureIdx > 0) {
       this.setState({ pictureIdx: (pictureIdx -= 1) });
     }
-
-    console.log('called');
   }
 
   render() {
     const { pictureIdx } = this.state;
+
     const {
       isDisplayed, hideModal, data, url,
     } = this.props;
+
+    const pluckUserInfoForPhoto = ({ users }, targetPhoto) => {
+      const userId = targetPhoto.imageUploaderId;
+
+      const idxOfPhotoUploader = users.findIndex(user => user.id === userId);
+
+      return users[idxOfPhotoUploader];
+    };
 
     if (!isDisplayed) {
       return null;
@@ -54,9 +59,12 @@ export default class PhotosModal extends Component {
             handleLeftArrowClick={this.handleLeftArrowClick}
             url={url}
             pictureIdx={pictureIdx}
-            photosSize={data.photos.length}
+            pictureCount={data.photos.length}
           />
-          <ModalInfoContainer data={data} />
+          <ModalInfo
+            photo={data.photos[pictureIdx]}
+            user={pluckUserInfoForPhoto(data, data.photos[pictureIdx])}
+          />
         </div>
       </div>
     );
