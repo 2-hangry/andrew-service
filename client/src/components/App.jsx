@@ -1,15 +1,20 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import PhotoCarouselContainer from './PhotoCarouselContainer';
+import PhotoCarouselContainer from './carousel/PhotoCarouselContainer';
+import PhotosModal from './modal/PhotosModal';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.url = 'http://localhost:3000';
 
-    this.state = {};
+    this.state = {
+      modalIsDisplayed: false,
+    };
 
     this.changeDisplayedBusiness = this.changeDisplayedBusiness.bind(this);
+    this.showPhotosModal = this.showPhotosModal.bind(this);
+    this.hidePhotosModal = this.hidePhotosModal.bind(this);
   }
 
   componentDidMount() {
@@ -20,21 +25,25 @@ export default class App extends Component {
     axios
       .get(`${this.url}/businesses/${id}/images`)
       .then((response) => {
-        this.setState({
-          data: response.data,
-        });
+        this.setState({ data: response.data });
       })
       .catch(err => console.error(err));
   }
 
   changeDisplayedBusiness(id) {
-    this.setState({
-      data: this.getBusinessData(id),
-    });
+    this.setState({ data: this.getBusinessData(id) });
+  }
+
+  showPhotosModal() {
+    this.setState({ modalIsDisplayed: true });
+  }
+
+  hidePhotosModal() {
+    this.setState({ modalIsDisplayed: false });
   }
 
   render() {
-    const { data } = this.state;
+    const { data, modalIsDisplayed } = this.state;
 
     return (
       <div>
@@ -48,7 +57,8 @@ export default class App extends Component {
             Go to business
           </button>
         </div>
-        <PhotoCarouselContainer data={data} />
+        <PhotoCarouselContainer data={data} showModal={this.showPhotosModal} />
+        <PhotosModal isDisplayed={modalIsDisplayed} hideModal={this.hidePhotosModal} data={data} />
       </div>
     );
   }
