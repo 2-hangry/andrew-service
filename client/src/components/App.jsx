@@ -58,7 +58,12 @@ export default class App extends Component {
           </button>
         </div>
         <PhotoCarouselContainer data={data} showModal={this.showPhotosModal} />
-        <PhotosModal isDisplayed={modalIsDisplayed} hideModal={this.hidePhotosModal} data={data} />
+        <PhotosModal
+          isDisplayed={modalIsDisplayed}
+          hideModal={this.hidePhotosModal}
+          data={data}
+          url={this.url}
+        />
       </div>
     );
   }
