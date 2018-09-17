@@ -15,9 +15,7 @@ const PhotoCarousel = ({
 
   const pluckUserInfoForPhoto = (userList, photo) => {
     const userId = photo.imageUploaderId;
-
     const idxOfPhotoUploader = userList.findIndex(user => user.id === userId);
-
     return userList[idxOfPhotoUploader];
   };
 

@@ -46,9 +46,10 @@ export default class PhotosModal extends Component {
       return users[idxOfPhotoUploader];
     };
 
-    if (!isDisplayed) {
+    if (isDisplayed === false) {
       return null;
     }
+
     return (
       <div>
         <div id="backDrop" onClick={hideModal} />
