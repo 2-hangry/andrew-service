@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
 const resBuilder = require('./responseBuilders');
 const db = require('../db/index');
 
@@ -9,6 +10,7 @@ const DIR_PATH = path.join(__dirname, '/../public/dist');
 const app = express();
 
 app.use(express.static(DIR_PATH));
+app.use(cors());
 
 app.get('/businesses/:id/images', (req, res) => {
   resBuilder
