@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   ModalInfoContainer,
   UserInfo,
@@ -82,3 +83,8 @@ const ModalInfo = ({ photo, user }) => {
 };
 
 export default ModalInfo;
+
+ModalInfo.propTypes = {
+  photo: PropTypes.instanceOf(Object).isRequired,
+  user: PropTypes.instanceOf(Object).isRequired,
+};
