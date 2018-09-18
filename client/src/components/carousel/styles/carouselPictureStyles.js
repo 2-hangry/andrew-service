@@ -22,6 +22,7 @@ export const PictureContainer = styled.div`
     position: relative;
     z-index: 1;
     transform: scale(1.136, 1.136);
+    cursor: pointer;
   }
 
   &:hover ${Banner} {

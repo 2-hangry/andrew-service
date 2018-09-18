@@ -18,6 +18,7 @@ const BannerItem = styled.i`
 
   &:hover {
     color: rgb(255, 255, 255);
+    cursor: pointer;
   }
 `;
 
@@ -77,5 +78,6 @@ export const PictureCount = styled(BannerItem)`
 
   &:hover {
     color: rgba(255, 255, 255, 0.692);
+    cursor: default;
   }
 `;

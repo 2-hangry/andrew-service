@@ -40,6 +40,7 @@ export const LeftModalBtn = styled(ModalBtn)`
 
   &:hover {
     border-color: ${props => (props.pictureIdx === 0 ? 'rgba(255, 255, 255, 0.315)' : 'rgb(255, 255, 255)')};
+    cursor: ${props => (props.pictureIdx === 0 ? 'default' : 'pointer')};
   }
 `;
 
@@ -54,5 +55,6 @@ export const RightModalBtn = styled(ModalBtn)`
     border-color: ${props => (props.pictureIdx === props.pictureCount - 1
     ? 'rgba(255, 255, 255, 0.315)'
     : 'rgb(255, 255, 255)')};
+    cursor: ${props => (props.pictureIdx === props.pictureCount - 1 ? 'default' : 'pointer')};
   }
 `;

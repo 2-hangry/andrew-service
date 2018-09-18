@@ -37,6 +37,7 @@ export const LeftCarouselBtn = styled.button`
 
   &:hover {
     border-color: ${props => (props.pictureIdx === 0 ? 'rgba(255, 255, 255, 0.315)' : 'rgb(255, 255, 255)')};
+    border-color: ${props => (props.pictureIdx === 0 ? 'default' : 'pointer')};
   }
 
   ${PhotoCarouselBox}:hover > & {
@@ -58,5 +59,6 @@ export const RightCarouselBtn = styled.button`
 
   &:hover {
     border-color: ${props => (props.pictureIdx === props.listSize ? 'rgba(255, 255, 255, 0.315)' : 'rgb(255, 255, 255)')};
+    cursor: ${props => (props.pictureIdx === props.listSize ? 'default' : 'pointer')};
   }
 `;

@@ -22,6 +22,10 @@ export const Avatar = styled.img`
   width: 35px;
   border-radius: 20%;
   margin: 0px 15px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const UserName = styled.span`
