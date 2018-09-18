@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import PhotoCarousel from './PhotoCarousel';
 
 export default class PhotoCarouselContainer extends Component {
@@ -58,3 +59,12 @@ export default class PhotoCarouselContainer extends Component {
     );
   }
 }
+
+PhotoCarouselContainer.defaultProps = {
+  data: undefined,
+};
+
+PhotoCarouselContainer.propTypes = {
+  data: PropTypes.instanceOf(Object),
+  showModal: PropTypes.func.isRequired,
+};

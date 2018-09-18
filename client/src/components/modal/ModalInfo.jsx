@@ -24,24 +24,20 @@ import {
 const ModalInfo = ({ photo, user }) => {
   const createUserNamePreview = (targetUser) => {
     const firstMiddleLast = targetUser.userName.split(' ');
-
     const lastInitial = firstMiddleLast[firstMiddleLast.length - 1].split('').slice(0, 1);
-
     return `${firstMiddleLast[0]} ${lastInitial}.`;
+  };
+
+  const formatDate = (dateObject) => {
+    const dateElements = dateObject.split(' ');
+    return `${dateElements[1]} ${dateElements[2]},${dateElements[3]}`;
   };
 
   const eliteStatus = () => {
     if (user.eliteStatus) {
       return "Elite '18";
     }
-
     return null;
-  };
-
-  const formatDate = (dateObject) => {
-    const dateElements = dateObject.split(' ');
-
-    return `${dateElements[1]} ${dateElements[2]},${dateElements[3]}`;
   };
 
   return (

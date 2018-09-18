@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import ModalPicture from './ModalPicture';
 
@@ -38,3 +39,21 @@ export default class ModalPictureContainer extends Component {
     );
   }
 }
+
+ModalPictureContainer.propTypes = {
+  handleLeftArrowClick: PropTypes.func.isRequired,
+  handleRightArrowClick: PropTypes.func.isRequired,
+  pictureIdx: PropTypes.number.isRequired,
+  pictureCount: PropTypes.number.isRequired,
+  url: PropTypes.string.isRequired,
+  photo: PropTypes.shape({
+    imageId: PropTypes.number,
+    businessId: PropTypes.number,
+    imageUploaderId: PropTypes.number,
+    imageUrl: PropTypes.string,
+    imageUploadDate: PropTypes.string,
+    imageComment: PropTypes.string,
+    helpfulCount: PropTypes.number,
+    reported: PropTypes.number,
+  }).isRequired,
+};

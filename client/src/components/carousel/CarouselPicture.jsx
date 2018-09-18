@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CarouselPictureBanner from './CarouselPictureBanner';
 import { CarouselPhotoGrid, PictureContainer, CarouselPhoto } from './styles/carouselPictureStyles';
 
@@ -14,3 +15,14 @@ const CarouselPicture = ({
 );
 
 export default CarouselPicture;
+
+CarouselPicture.defaultProps = {
+  focusState: undefined,
+};
+
+CarouselPicture.propTypes = {
+  focusState: PropTypes.bool,
+  showModal: PropTypes.func.isRequired,
+  photo: PropTypes.instanceOf(Object).isRequired,
+  user: PropTypes.instanceOf(Object).isRequired,
+};

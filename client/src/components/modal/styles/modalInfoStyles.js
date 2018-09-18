@@ -76,7 +76,6 @@ export const Reviews = styled.i`
 
 export const Elite = styled.span`
   display: inline-block;
-  float: left;
   margin-left: 15px;
   font-size: 13px;
   font-weight: bold;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   ModalPictureBannerContainer,
   BrowseAll,
@@ -27,3 +28,10 @@ const ModalPictureBanner = ({
 );
 
 export default ModalPictureBanner;
+
+ModalPictureBanner.propTypes = {
+  pictureCount: PropTypes.number.isRequired,
+  pictureIdx: PropTypes.number.isRequired,
+  isReported: PropTypes.number.isRequired,
+  updateImageReported: PropTypes.func.isRequired,
+};

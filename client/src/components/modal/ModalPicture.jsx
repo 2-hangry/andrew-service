@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ModalPictureBanner from './ModalPictureBanner';
 import { ModalPictureBox, LeftModalBtn, RightModalBtn } from './styles/modalPictureStyles';
 
@@ -29,3 +30,21 @@ const ModalPicture = ({
 );
 
 export default ModalPicture;
+
+ModalPicture.propTypes = {
+  handleLeftArrowClick: PropTypes.func.isRequired,
+  handleRightArrowClick: PropTypes.func.isRequired,
+  updateImageReported: PropTypes.func.isRequired,
+  pictureIdx: PropTypes.number.isRequired,
+  pictureCount: PropTypes.number.isRequired,
+  photo: PropTypes.shape({
+    imageId: PropTypes.number,
+    businessId: PropTypes.number,
+    imageUploaderId: PropTypes.number,
+    imageUrl: PropTypes.string,
+    imageUploadDate: PropTypes.string,
+    imageComment: PropTypes.string,
+    helpfulCount: PropTypes.number,
+    reported: PropTypes.number,
+  }).isRequired,
+};

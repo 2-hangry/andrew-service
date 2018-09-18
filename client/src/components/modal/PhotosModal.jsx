@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ModalPictureContainer from './ModalPictureContainer';
 import ModalInfo from './ModalInfo';
 import { BackDrop, Modal } from './styles/photosModalStyles';
@@ -34,16 +35,13 @@ export default class PhotosModal extends Component {
 
   render() {
     const { pictureIdx } = this.state;
-
     const {
       isDisplayed, hideModal, data, url,
     } = this.props;
 
     const pluckUserInfoForPhoto = ({ users }, targetPhoto) => {
       const userId = targetPhoto.imageUploaderId;
-
       const idxOfPhotoUploader = users.findIndex(user => user.id === userId);
-
       return users[idxOfPhotoUploader];
     };
 
@@ -72,3 +70,17 @@ export default class PhotosModal extends Component {
     );
   }
 }
+PhotosModal.defaultProps = {
+  data: undefined,
+};
+
+PhotosModal.propTypes = {
+  isDisplayed: PropTypes.bool.isRequired,
+  hideModal: PropTypes.func.isRequired,
+  url: PropTypes.string.isRequired,
+  data: PropTypes.shape({
+    photos: PropTypes.array.isRequired,
+    users: PropTypes.array.isRequired,
+    business: PropTypes.array.isRequired,
+  }),
+};
