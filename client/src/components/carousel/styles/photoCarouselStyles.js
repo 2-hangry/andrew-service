@@ -35,12 +35,12 @@ export const LeftCarouselBtn = styled.button`
   left: -40px;
   border-color: ${props => (props.pictureIdx === 0 ? 'rgba(255, 255, 255, 0.315)' : 'rgba(255, 255, 255, 0.692)')};
 
-  ${PhotoCarouselBox}:hover > & {
-    transform: translate(70px, 0px) rotate(-135deg);
-  }
-
   &:hover {
     border-color: ${props => (props.pictureIdx === 0 ? 'rgba(255, 255, 255, 0.315)' : 'rgb(255, 255, 255)')};
+  }
+
+  ${PhotoCarouselBox}:hover > & {
+    transform: translate(70px, 0px) rotate(-135deg);
   }
 `;
 
