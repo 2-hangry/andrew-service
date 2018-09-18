@@ -33,12 +33,8 @@ const PhotoCarousel = ({
   });
 
   return (
-    <div
-      id="photoCarousel"
-      onMouseEnter={() => changeFocusState()}
-      onMouseLeave={() => changeFocusState()}
-    >
-      <button className={leftBtnClass} type="button" onClick={() => handleLeftButtonClick()} />
+    <div id="photoCarousel" onMouseEnter={changeFocusState} onMouseLeave={changeFocusState}>
+      <button className={leftBtnClass} type="button" onClick={handleLeftButtonClick} />
       <div id="carouselPhotos">
         <CarouselPicture
           showModal={showModal}
@@ -57,7 +53,7 @@ const PhotoCarousel = ({
           photo={photos[pictureIdx + 2]}
         />
       </div>
-      <button className={rightBtnClass} type="button" onClick={() => handleRightButtonClick()} />
+      <button className={rightBtnClass} type="button" onClick={handleRightButtonClick} />
     </div>
   );
 };

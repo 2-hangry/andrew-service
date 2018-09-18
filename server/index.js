@@ -17,14 +17,14 @@ app.get('/businesses/:id/images', (req, res) => {
     .catch(err => res.send(err));
 });
 
-app.post('/businesses/:id/images/helpful', (req, res) => {
-  db.updateHelpfulCount(req.params.id)
+app.post('/images/:imgId/helpful', (req, res) => {
+  db.updateHelpfulCount(req.params.imgId)
     .then(data => res.json(data))
     .catch(err => res.send(err));
 });
 
-app.post('/businesses/:id/images/report', (req, res) => {
-  db.updateReported(req.params.id)
+app.post('/images/:imgId/report', (req, res) => {
+  db.updateReported(req.params.imgId)
     .then(data => res.json(data))
     .catch(err => res.send(err));
 });

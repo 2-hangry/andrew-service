@@ -12,7 +12,7 @@ const CarouselPicture = ({
 
   return (
     <div className="carouselPhotoGrid">
-      <div className={pictureContainerClass} onClick={() => showModal()}>
+      <div className={pictureContainerClass} onClick={showModal}>
         <img className="carouselPhoto" src={photo.imageUrl} alt="business food or service" />
         <CarouselPictureBanner user={user} photo={photo} />
       </div>
