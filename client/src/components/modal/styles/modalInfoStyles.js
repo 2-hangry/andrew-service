@@ -22,6 +22,10 @@ export const Avatar = styled.img`
   width: 35px;
   border-radius: 20%;
   margin: 0px 15px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const UserName = styled.span`
@@ -76,7 +80,6 @@ export const Reviews = styled.i`
 
 export const Elite = styled.span`
   display: inline-block;
-  float: left;
   margin-left: 15px;
   font-size: 13px;
   font-weight: bold;

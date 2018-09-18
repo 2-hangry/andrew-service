@@ -18,6 +18,7 @@ const BannerItem = styled.i`
 
   &:hover {
     color: rgb(255, 255, 255);
+    cursor: pointer;
   }
 `;
 
@@ -34,12 +35,17 @@ export const BrowseAll = styled(BannerItem)`
   }
 `;
 
-export const Share = styled(BannerItem)`
-  right: 15%;
+export const MediaWrapper = styled.div`
+  position: absolute;
+  height: 30px;
+  width: 170px;
+  right: 1%;
+`;
 
+export const Share = styled(BannerItem)`
+  display: inline;
   p {
     display: inline;
-    position: relative;
     left: 5px;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 12px;
@@ -48,12 +54,11 @@ export const Share = styled(BannerItem)`
 `;
 
 export const Compliment = styled(BannerItem)`
-  right: 5%;
-
+  margin-left: 60px;
+  display: inline;
   p {
     display: inline;
-    position: relative;
-    left: 5px;
+    left: 7px;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 12px;
     font-weight: bold;
@@ -61,8 +66,9 @@ export const Compliment = styled(BannerItem)`
 `;
 
 export const ReportFlag = styled(BannerItem)`
-  right: 1%;
   font-size: 15px;
+  display: inline;
+  margin-left: 155px;
   color: ${props => (props.isReported ? 'red' : 'rgba(255, 255, 255, 0.692)')};
 
   &:hover {
@@ -77,5 +83,6 @@ export const PictureCount = styled(BannerItem)`
 
   &:hover {
     color: rgba(255, 255, 255, 0.692);
+    cursor: default;
   }
 `;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Banner,
   Avatar,
@@ -14,11 +15,9 @@ const CarouselPictureBanner = ({ user, photo }) => {
     .join('')
     .concat('...');
 
-  const createUserNamePreview = (user) => {
-    const firstMiddleLast = user.userName.split(' ');
-
+  const createUserNamePreview = (targetUser) => {
+    const firstMiddleLast = targetUser.userName.split(' ');
     const lastInitial = firstMiddleLast[firstMiddleLast.length - 1].split('').slice(0, 1);
-
     return `${firstMiddleLast[0]} ${lastInitial}.`;
   };
 
@@ -34,3 +33,8 @@ const CarouselPictureBanner = ({ user, photo }) => {
 };
 
 export default CarouselPictureBanner;
+
+CarouselPictureBanner.propTypes = {
+  photo: PropTypes.instanceOf(Object).isRequired,
+  user: PropTypes.instanceOf(Object).isRequired,
+};

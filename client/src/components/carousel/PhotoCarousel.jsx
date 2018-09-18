@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CarouselPicture from './CarouselPicture';
 import {
   PhotoCarouselBox,
@@ -56,3 +57,13 @@ const PhotoCarousel = ({
 };
 
 export default PhotoCarousel;
+
+PhotoCarousel.propTypes = {
+  pictureIdx: PropTypes.number.isRequired,
+  handleLeftButtonClick: PropTypes.func.isRequired,
+  handleRightButtonClick: PropTypes.func.isRequired,
+  changeFocusState: PropTypes.func.isRequired,
+  showModal: PropTypes.func.isRequired,
+  focusState: PropTypes.bool.isRequired,
+  data: PropTypes.instanceOf(Object).isRequired,
+};

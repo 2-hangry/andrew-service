@@ -7,4 +7,8 @@ export const AppWrapper = styled.div`
 export const BizSwitch = styled.div`
   width: 200px;
   margin: auto;
+
+  button:hover {
+    cursor: pointer;
+  }
 `;
