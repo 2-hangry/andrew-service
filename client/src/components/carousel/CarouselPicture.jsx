@@ -7,7 +7,7 @@ const CarouselPicture = ({
   photo, focusState, user, showModal,
 }) => (
   <CarouselPhotoGrid>
-    <PictureContainer focusState={focusState} onClick={showModal}>
+    <PictureContainer focusState={focusState} onClick={() => showModal(photo.id)}>
       <CarouselPhoto src={photo.imageUrl} alt="business food or service" />
       <CarouselPictureBanner user={user} photo={photo} />
     </PictureContainer>

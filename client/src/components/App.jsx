@@ -9,11 +9,16 @@ export default class App extends Component {
     super(props);
     this.url = 'http://localhost:3000';
 
-    this.state = { modalIsDisplayed: false };
+    this.state = {
+      modalIsDisplayed: false,
+      modalIdx: 0,
+    };
 
     this.changeDisplayedBusiness = this.changeDisplayedBusiness.bind(this);
     this.showPhotosModal = this.showPhotosModal.bind(this);
     this.hidePhotosModal = this.hidePhotosModal.bind(this);
+    this.handleModalRightArrowClick = this.handleModalRightArrowClick.bind(this);
+    this.handleModalLeftArrowClick = this.handleModalLeftArrowClick.bind(this);
   }
 
   componentDidMount() {
@@ -33,16 +38,39 @@ export default class App extends Component {
     this.setState({ data: this.getBusinessData(id) });
   }
 
-  showPhotosModal() {
-    this.setState({ modalIsDisplayed: true });
+  showPhotosModal(photoId) {
+    const { data } = this.state;
+    const idx = data.photos.findIndex(photo => photo.id === photoId);
+
+    this.setState({
+      modalIsDisplayed: true,
+      modalIdx: idx,
+    });
   }
 
   hidePhotosModal() {
     this.setState({ modalIsDisplayed: false });
   }
 
+  handleModalRightArrowClick() {
+    const { data } = this.state;
+    let { modalIdx } = this.state;
+
+    if (modalIdx < data.photos.length - 1) {
+      this.setState({ modalIdx: (modalIdx += 1) });
+    }
+  }
+
+  handleModalLeftArrowClick() {
+    let { modalIdx } = this.state;
+
+    if (modalIdx > 0) {
+      this.setState({ modalIdx: (modalIdx -= 1) });
+    }
+  }
+
   render() {
-    const { data, modalIsDisplayed } = this.state;
+    const { data, modalIsDisplayed, modalIdx } = this.state;
 
     return (
       <AppWrapper>
@@ -60,6 +88,9 @@ export default class App extends Component {
         <PhotosModal
           isDisplayed={modalIsDisplayed}
           hideModal={this.hidePhotosModal}
+          handleRightArrowClick={this.handleModalRightArrowClick}
+          handleLeftArrowClick={this.handleModalLeftArrowClick}
+          pictureIdx={modalIdx}
           data={data}
           url={this.url}
         />
