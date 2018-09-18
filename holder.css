@@ -1,0 +1,445 @@
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#bizSwitch {
+  width: 200px;
+  margin: auto;
+}
+
+#backDrop {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+#modal {
+  width: 68%;
+  height: 93%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  z-index: 501;
+}
+
+.modalPicture {
+  float: left;
+  height: 100%;
+  width: 77%;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+  background: rgba(0, 0, 0, 0.918);
+}
+
+.modalInfoContainer {
+  position: relative;
+  float: left;
+  height: 100%;
+  width: 23%;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+  background: white;
+}
+
+.modalPicture img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.modalPictureBanner {
+  position: absolute;
+  bottom: 0px;
+  width: 77%;
+  height: 30px;
+  background: rgba(0, 0, 0, 0.603);
+  color: grey;
+}
+
+.bannerItem {
+  position: absolute;
+  background: transparent;
+  top: 20%;
+  border: transparent;
+  color: rgba(255, 255, 255, 0.692);
+}
+
+.bannerItem:hover {
+  color: rgb(255, 255, 255);
+}
+
+#browseAll {
+  left: 0.5%;
+}
+
+#browseAll p {
+  display: inline;
+  position: relative;
+  left: 5px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.pictureCount,
+.pictureCount:hover {
+  color: rgba(255, 255, 255, 0.692);
+  font-size: 11px;
+  left: 48%;
+}
+
+#share {
+  right: 15%;
+}
+
+#share p {
+  display: inline;
+  position: relative;
+  left: 5px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#compliment {
+  right: 5%;
+}
+
+#compliment p {
+  display: inline;
+  position: relative;
+  left: 5px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#reportFlag {
+  right: 1%;
+  font-size: 15px;
+}
+
+.reported,
+.reported:hover {
+  color: red;
+}
+
+.modalPictureButton {
+  position: absolute;
+  z-index: 505;
+  height: 30px;
+  width: 30px;
+  top: 50%;
+  background-color: transparent;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.692);
+  outline: none;
+  border-width: 6px 6px 0 0;
+  content: '';
+}
+
+.modalPictureButton:hover {
+  border-color: rgb(255, 255, 255);
+}
+
+.leftModalButton {
+  transform: rotate(-135deg);
+  left: 2%;
+}
+
+.rightModalButton {
+  transform: rotate(45deg);
+  left: 73%;
+}
+
+.userInfo {
+  position: relative;
+  height: 40px;
+  margin: 20px 0px 10px 0px;
+}
+
+.userName {
+  vertical-align: top;
+  font-weight: bold;
+  color: rgb(0, 136, 226);
+}
+
+.userName:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.userStats {
+  position: relative;
+  height: 20px;
+  margin-top: 5px;
+}
+
+#friends {
+  float: left;
+  font-size: 14px;
+  color: rgb(255, 102, 0);
+}
+
+#friends p {
+  display: inline;
+  position: relative;
+  left: 5px;
+  color: rgb(90, 90, 90);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#reviews {
+  float: left;
+  margin-left: 20px;
+  font-size: 14px;
+  color: rgb(255, 102, 0);
+}
+
+#reviews p {
+  display: inline;
+  position: relative;
+  left: 5px;
+  color: rgb(90, 90, 90);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.elite {
+  display: inline-block;
+  float: left;
+  margin-left: 15px;
+  font-size: 13px;
+  font-weight: bold;
+  color: rgb(255, 102, 0);
+}
+
+.elite:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.modalAvatar {
+  float: left;
+  vertical-align: top;
+  width: 35px;
+  border-radius: 20%;
+  margin: 0px 15px;
+}
+
+.photoComment {
+  width: 90%;
+  margin: 0px 15px;
+}
+
+.comment {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: rgb(63, 63, 63);
+}
+
+.date {
+  font-size: 12px;
+  color: rgb(151, 151, 151);
+}
+
+.helpfulUi {
+  margin: 15px 15px;
+}
+
+.helpfulPrompt {
+  color: rgb(90, 90, 90);
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.helpfulButtonsContainer {
+  margin-top: 8px;
+}
+
+.helpfulButton {
+  margin-right: 3px;
+  height: 30px;
+  font-size: 12px;
+  font-weight: bold;
+  color: rgb(90, 90, 90);
+  border-radius: 4px;
+  outline: none;
+  padding: 0px 11px;
+}
+
+.helpfulButton:hover {
+  cursor: pointer;
+}
+
+.arrow {
+  margin-right: 5px;
+}
+
+#helpfulCount {
+  font-weight: 300;
+  margin-left: 4px;
+}
+
+.reservation {
+  margin-left: 15px;
+  color: rgb(0, 136, 226);
+  font-size: 15px;
+}
+
+.reservation:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.cal {
+  margin-right: 10px;
+}
+
+#photoCarousel {
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 660px;
+  height: 220px;
+  position: relative;
+}
+
+#carouselPhotos {
+  margin: auto;
+  width: 660px;
+  height: 220px;
+}
+
+.carouselPhotoGrid {
+  width: 220px;
+  float: left;
+}
+
+.carouselPhotoContainer {
+  width: 220px;
+  height: 220px;
+  transition: transform 0.5s;
+}
+
+.carouselPhotoContainer:hover {
+  position: relative;
+  z-index: 1;
+  transform: scale(1.136, 1.136);
+}
+
+.carouselPhoto {
+  object-fit: cover;
+  width: inherit;
+  height: inherit;
+}
+
+.focus {
+  position: relative;
+  z-index: 1;
+  transform: scale(1.136, 1.136);
+}
+
+.carouselBtn {
+  position: absolute;
+  vertical-align: top;
+  z-index: 2;
+  height: 30px;
+  width: 30px;
+  top: 110px;
+  background-color: transparent;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.692);
+  outline: none;
+  border-width: 6px 6px 0 0;
+  content: '';
+}
+
+.carouselBtn:hover {
+  border-color: rgb(255, 255, 255);
+}
+
+.end,
+.end:hover {
+  border-color: rgba(255, 255, 255, 0.315);
+}
+
+#photoCarousel button.leftCarouselBtn {
+  transition: transform 0.15s;
+  transform: rotate(-135deg);
+  left: -40px;
+}
+
+#photoCarousel button.rightCarouselBtn {
+  transition: transform 0.15s;
+  transform: rotate(45deg);
+  right: -40px;
+}
+
+#photoCarousel:hover button.leftCarouselBtn {
+  transform: translate(70px, 0px) rotate(-135deg);
+}
+
+#photoCarousel:hover button.rightCarouselBtn {
+  transform: translate(-70px, 0px) rotate(45deg);
+}
+
+.carouselPictureBanner {
+  background-color: rgba(0, 0, 0, 0.445);
+  color: white;
+  opacity: 0;
+  z-index: 2;
+  position: absolute;
+  bottom: 0px;
+  width: inherit;
+  height: 45px;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.carouselPhotoContainer:hover .carouselPictureBanner {
+  opacity: 1;
+}
+
+.focus .carouselPictureBanner {
+  opacity: 1;
+}
+
+.avatar {
+  width: 30px;
+  border-radius: 20%;
+  position: absolute;
+  left: 7px;
+  top: 8px;
+}
+
+.mediaPreview {
+  position: absolute;
+  text-align: left;
+  vertical-align: top;
+  font-size: 11px;
+  bottom: 7px;
+  left: 42px;
+  width: 130px;
+  height: 31px;
+}
+
+.commentPreview {
+  color: white;
+  font-weight: bold;
+}
+
+.userNamePreview {
+  color: rgb(211, 211, 211);
+}
+
+.mediaPreview p {
+  display: inline;
+}

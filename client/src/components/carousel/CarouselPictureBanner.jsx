@@ -1,5 +1,11 @@
 import React from 'react';
-import classNames from 'classnames';
+import {
+  Banner,
+  Avatar,
+  MediaPreview,
+  CommentPreview,
+  UserNamePreview,
+} from './styles/carouselPictureBannerStyles';
 
 const CarouselPictureBanner = ({ user, photo }) => {
   const createCommentPreview = comment => comment
@@ -16,18 +22,14 @@ const CarouselPictureBanner = ({ user, photo }) => {
     return `${firstMiddleLast[0]} ${lastInitial}.`;
   };
 
-  const bannerClass = classNames({
-    carouselPictureBanner: true,
-  });
-
   return (
-    <div className={bannerClass}>
-      <img className="avatar" src={user.profileImageUrl} alt="avatar" />
-      <span className="mediaPreview">
-        <p className="commentPreview">{createCommentPreview(photo.imageComment)}</p>
-        <p className="userNamePreview">{`  by ${createUserNamePreview(user)}`}</p>
-      </span>
-    </div>
+    <Banner>
+      <Avatar src={user.profileImageUrl} alt="avatar" />
+      <MediaPreview>
+        <CommentPreview>{createCommentPreview(photo.imageComment)}</CommentPreview>
+        <UserNamePreview>{`  by ${createUserNamePreview(user)}`}</UserNamePreview>
+      </MediaPreview>
+    </Banner>
   );
 };
 

@@ -1,23 +1,16 @@
 import React from 'react';
-import classNames from 'classnames';
 import CarouselPictureBanner from './CarouselPictureBanner';
+import { CarouselPhotoGrid, PictureContainer, CarouselPhoto } from './styles/carouselPictureStyles';
 
 const CarouselPicture = ({
   photo, focusState, user, showModal,
-}) => {
-  const pictureContainerClass = classNames({
-    carouselPhotoContainer: true,
-    focus: focusState,
-  });
-
-  return (
-    <div className="carouselPhotoGrid">
-      <div className={pictureContainerClass} onClick={showModal}>
-        <img className="carouselPhoto" src={photo.imageUrl} alt="business food or service" />
-        <CarouselPictureBanner user={user} photo={photo} />
-      </div>
-    </div>
-  );
-};
+}) => (
+  <CarouselPhotoGrid>
+    <PictureContainer focusState={focusState} onClick={showModal}>
+      <CarouselPhoto src={photo.imageUrl} alt="business food or service" />
+      <CarouselPictureBanner user={user} photo={photo} />
+    </PictureContainer>
+  </CarouselPhotoGrid>
+);
 
 export default CarouselPicture;

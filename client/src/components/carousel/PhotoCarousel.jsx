@@ -1,6 +1,11 @@
 import React from 'react';
-import classNames from 'classnames';
 import CarouselPicture from './CarouselPicture';
+import {
+  PhotoCarouselBox,
+  LeftCarouselBtn,
+  RightCarouselBtn,
+  CarouselPhotos,
+} from './styles/photoCarouselStyles';
 
 const PhotoCarousel = ({
   pictureIdx,
@@ -15,27 +20,14 @@ const PhotoCarousel = ({
 
   const pluckUserInfoForPhoto = (userList, photo) => {
     const userId = photo.imageUploaderId;
-
     const idxOfPhotoUploader = userList.findIndex(user => user.id === userId);
-
     return userList[idxOfPhotoUploader];
   };
 
-  const leftBtnClass = classNames({
-    leftCarouselBtn: true,
-    carouselBtn: true,
-    end: pictureIdx === 0,
-  });
-  const rightBtnClass = classNames({
-    rightCarouselBtn: true,
-    carouselBtn: true,
-    end: pictureIdx === data.photos.length - 3,
-  });
-
   return (
-    <div id="photoCarousel" onMouseEnter={changeFocusState} onMouseLeave={changeFocusState}>
-      <button className={leftBtnClass} type="button" onClick={handleLeftButtonClick} />
-      <div id="carouselPhotos">
+    <PhotoCarouselBox onMouseEnter={changeFocusState} onMouseLeave={changeFocusState}>
+      <LeftCarouselBtn pictureIdx={pictureIdx} type="button" onClick={handleLeftButtonClick} />
+      <CarouselPhotos>
         <CarouselPicture
           showModal={showModal}
           user={pluckUserInfoForPhoto(users, photos[pictureIdx])}
@@ -52,9 +44,14 @@ const PhotoCarousel = ({
           user={pluckUserInfoForPhoto(users, photos[pictureIdx + 2])}
           photo={photos[pictureIdx + 2]}
         />
-      </div>
-      <button className={rightBtnClass} type="button" onClick={handleRightButtonClick} />
-    </div>
+      </CarouselPhotos>
+      <RightCarouselBtn
+        type="button"
+        listSize={data.photos.length - 3}
+        pictureIdx={pictureIdx}
+        onClick={handleRightButtonClick}
+      />
+    </PhotoCarouselBox>
   );
 };
 
