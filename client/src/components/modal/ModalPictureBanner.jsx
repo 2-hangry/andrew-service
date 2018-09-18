@@ -7,6 +7,7 @@ import {
   Compliment,
   ReportFlag,
   PictureCount,
+  MediaWrapper,
 } from './styles/modalPictureBannerStyles';
 
 const ModalPictureBanner = ({
@@ -17,13 +18,15 @@ const ModalPictureBanner = ({
       <p>Browse all</p>
     </BrowseAll>
     <PictureCount>{`${pictureIdx + 1} of ${pictureCount}`}</PictureCount>
-    <Share className="fa fa-share-square-o" onClick={updateImageReported}>
-      <p>Share</p>
-    </Share>
-    <Compliment className="fa fa-certificate">
-      <p>Compliment</p>
-    </Compliment>
-    <ReportFlag isReported={isReported} className="fa fa-flag" onClick={updateImageReported} />
+    <MediaWrapper>
+      <Share className="fa fa-share-square-o" onClick={updateImageReported}>
+        <p>Share</p>
+      </Share>
+      <Compliment className="fa fa-certificate">
+        <p>Compliment</p>
+      </Compliment>
+      <ReportFlag isReported={isReported} className="fa fa-flag" onClick={updateImageReported} />
+    </MediaWrapper>
   </ModalPictureBannerContainer>
 );
 

@@ -2,9 +2,9 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import PhotoCarouselContainer from './carousel/PhotoCarouselContainer';
 import PhotosModal from './modal/PhotosModal';
-import { BizSwitch, AppWrapper } from './appStyles';
+import { BizSwitch, AppWrapper } from './carouselAppStyles';
 
-export default class App extends Component {
+export default class CarouselApp extends Component {
   constructor(props) {
     super(props);
     this.url = 'http://localhost:3000';
