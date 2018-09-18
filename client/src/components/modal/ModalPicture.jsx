@@ -1,6 +1,6 @@
 import React from 'react';
-import classNames from 'classnames';
 import ModalPictureBanner from './ModalPictureBanner';
+import { ModalPictureBox, LeftModalBtn, RightModalBtn } from './styles/modalPictureStyles';
 
 const ModalPicture = ({
   photo,
@@ -9,31 +9,23 @@ const ModalPicture = ({
   updateImageReported,
   pictureIdx,
   pictureCount,
-}) => {
-  const leftButtonClass = classNames({
-    modalPictureButton: true,
-    leftModalButton: true,
-    end: pictureIdx === 0,
-  });
-  const rightButtonClass = classNames({
-    modalPictureButton: true,
-    rightModalButton: true,
-    end: pictureIdx === pictureCount - 1,
-  });
-
-  return (
-    <div className="modalPicture">
-      <button className={leftButtonClass} type="button" onClick={handleLeftArrowClick} />
-      <img src={photo.imageUrl} alt="user submitted" />
-      <button className={rightButtonClass} type="button" onClick={handleRightArrowClick} />
-      <ModalPictureBanner
-        pictureCount={pictureCount}
-        pictureIdx={pictureIdx}
-        updateImageReported={updateImageReported}
-        isReported={photo.reported}
-      />
-    </div>
-  );
-};
+}) => (
+  <ModalPictureBox>
+    <LeftModalBtn pictureIdx={pictureIdx} type="button" onClick={handleLeftArrowClick} />
+    <img src={photo.imageUrl} alt="user submitted" />
+    <RightModalBtn
+      pictureIdx={pictureIdx}
+      pictureCount={pictureCount}
+      type="button"
+      onClick={handleRightArrowClick}
+    />
+    <ModalPictureBanner
+      pictureCount={pictureCount}
+      pictureIdx={pictureIdx}
+      updateImageReported={updateImageReported}
+      isReported={photo.reported}
+    />
+  </ModalPictureBox>
+);
 
 export default ModalPicture;

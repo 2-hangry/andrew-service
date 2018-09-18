@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ModalPictureContainer from './ModalPictureContainer';
 import ModalInfo from './ModalInfo';
+import { BackDrop, Modal } from './styles/photosModalStyles';
 
 export default class PhotosModal extends Component {
   constructor(props) {
@@ -52,8 +53,8 @@ export default class PhotosModal extends Component {
 
     return (
       <div>
-        <div id="backDrop" onClick={hideModal} />
-        <div id="modal">
+        <BackDrop onClick={hideModal} />
+        <Modal>
           <ModalPictureContainer
             photo={data.photos[pictureIdx]}
             handleRightArrowClick={this.handleRightArrowClick}
@@ -66,7 +67,7 @@ export default class PhotosModal extends Component {
             photo={data.photos[pictureIdx]}
             user={pluckUserInfoForPhoto(data, data.photos[pictureIdx])}
           />
-        </div>
+        </Modal>
       </div>
     );
   }

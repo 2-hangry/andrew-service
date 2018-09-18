@@ -1,4 +1,25 @@
 import React from 'react';
+import {
+  ModalInfoContainer,
+  UserInfo,
+  Avatar,
+  UserName,
+  UserStats,
+  Friends,
+  Reviews,
+  Elite,
+  PhotoComment,
+  Comment,
+  Date,
+  HelpfulUi,
+  HelpfulPrompt,
+  HelpfulButtonsContainer,
+  HelpfulButton,
+  Reservation,
+  Arrow,
+  Cal,
+  HelpfulCount,
+} from './styles/modalInfoStyles';
 
 const ModalInfo = ({ photo, user }) => {
   const createUserNamePreview = (targetUser) => {
@@ -24,43 +45,43 @@ const ModalInfo = ({ photo, user }) => {
   };
 
   return (
-    <div className="modalInfoContainer">
-      <div className="userInfo">
-        <img src={user.profileImageUrl} alt="avatar" className="modalAvatar" />
-        <span className="userName">{createUserNamePreview(user)}</span>
-        <div className="userStats">
-          <i id="friends" className="fa fa-users">
+    <ModalInfoContainer>
+      <UserInfo>
+        <Avatar src={user.profileImageUrl} alt="avatar" />
+        <UserName>{createUserNamePreview(user)}</UserName>
+        <UserStats>
+          <Friends className="fa fa-users">
             <p>{user.friendsCount}</p>
-          </i>
-          <i id="reviews" className="fa fa-star">
+          </Friends>
+          <Reviews className="fa fa-star">
             <p>{user.reviewsCount}</p>
-          </i>
-          <span className="elite">{eliteStatus()}</span>
-        </div>
-      </div>
-      <div className="photoComment">
-        <div className="comment">{photo.imageComment}</div>
-        <div className="date">{formatDate(photo.imageUploadDate)}</div>
-      </div>
-      <div className="helpfulUi">
-        <div className="helpfulPrompt">Was this photo ...?</div>
-        <div className="helpfulButtonsContainer">
-          <button type="button" className="helpfulButton">
-            <i className="arrow fa fa-arrow-up" />
+          </Reviews>
+          <Elite>{eliteStatus()}</Elite>
+        </UserStats>
+      </UserInfo>
+      <PhotoComment>
+        <Comment>{photo.imageComment}</Comment>
+        <Date>{formatDate(photo.imageUploadDate)}</Date>
+      </PhotoComment>
+      <HelpfulUi>
+        <HelpfulPrompt>Was this photo ...?</HelpfulPrompt>
+        <HelpfulButtonsContainer>
+          <HelpfulButton type="button">
+            <Arrow className="fa fa-arrow-up" />
             Helpful
-            <b id="helpfulCount">{photo.helpfulCount}</b>
-          </button>
-          <button type="button" className="helpfulButton">
-            <i className="arrow fa fa-arrow-down" />
+            <HelpfulCount>{photo.helpfulCount}</HelpfulCount>
+          </HelpfulButton>
+          <HelpfulButton type="button">
+            <Arrow className="fa fa-arrow-down" />
             Not Helpful
-          </button>
-        </div>
-      </div>
-      <div className="reservation">
-        <i className="cal fa fa-calendar-o" />
+          </HelpfulButton>
+        </HelpfulButtonsContainer>
+      </HelpfulUi>
+      <Reservation>
+        <Cal className="fa fa-calendar-o" />
         Make a Reservation
-      </div>
-    </div>
+      </Reservation>
+    </ModalInfoContainer>
   );
 };
 

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import PhotoCarouselContainer from './carousel/PhotoCarouselContainer';
 import PhotosModal from './modal/PhotosModal';
+import { BizSwitch, AppWrapper } from './appStyles';
 
 export default class App extends Component {
   constructor(props) {
@@ -44,8 +45,8 @@ export default class App extends Component {
     const { data, modalIsDisplayed } = this.state;
 
     return (
-      <div>
-        <div id="bizSwitch">
+      <AppWrapper>
+        <BizSwitch>
           <input id="businessId" type="number" min="1" max="100" defaultValue="1" />
           <button
             type="button"
@@ -54,7 +55,7 @@ export default class App extends Component {
           >
             Go to business
           </button>
-        </div>
+        </BizSwitch>
         <PhotoCarouselContainer data={data} showModal={this.showPhotosModal} />
         <PhotosModal
           isDisplayed={modalIsDisplayed}
@@ -62,7 +63,7 @@ export default class App extends Component {
           data={data}
           url={this.url}
         />
-      </div>
+      </AppWrapper>
     );
   }
 }
