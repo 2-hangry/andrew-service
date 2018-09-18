@@ -19,9 +19,7 @@ export default class PhotoCarouselContainer extends Component {
     const { pictureIdx } = this.state;
 
     if (pictureIdx > 0) {
-      this.setState({
-        pictureIdx: pictureIdx - 1,
-      });
+      this.setState({ pictureIdx: pictureIdx - 1 });
     }
   }
 
@@ -30,22 +28,18 @@ export default class PhotoCarouselContainer extends Component {
     const { data } = this.props;
 
     if (pictureIdx + 2 < data.photos.length - 1) {
-      this.setState({
-        pictureIdx: pictureIdx + 1,
-      });
+      this.setState({ pictureIdx: pictureIdx + 1 });
     }
   }
 
   changeFocusState() {
     const { defaultFocusState } = this.state;
 
-    this.setState({
-      defaultFocusState: !defaultFocusState,
-    });
+    this.setState({ defaultFocusState: !defaultFocusState });
   }
 
   render() {
-    const { data } = this.props;
+    const { data, showModal } = this.props;
     const { pictureIdx, defaultFocusState } = this.state;
 
     if (data === undefined) {
@@ -59,6 +53,7 @@ export default class PhotoCarouselContainer extends Component {
         changeFocusState={this.changeFocusState}
         handleLeftButtonClick={this.handleLeftButtonClick}
         handleRightButtonClick={this.handleRightButtonClick}
+        showModal={showModal}
       />
     );
   }
