@@ -7,7 +7,6 @@ import { BizSwitch, AppWrapper } from './carouselAppStyles';
 export default class CarouselApp extends Component {
   constructor(props) {
     super(props);
-    this.url = 'http://localhost:3000';
 
     this.state = {
       modalIsDisplayed: false,
@@ -27,7 +26,7 @@ export default class CarouselApp extends Component {
 
   getBusinessData(id = 1) {
     axios
-      .get(`${this.url}/businesses/${id}/images`)
+      .get(`/businesses/${id}/images`)
       .then((response) => {
         this.setState({ data: response.data });
       })
@@ -92,7 +91,6 @@ export default class CarouselApp extends Component {
           handleLeftArrowClick={this.handleModalLeftArrowClick}
           pictureIdx={modalIdx}
           data={data}
-          url={this.url}
         />
       </AppWrapper>
     );
