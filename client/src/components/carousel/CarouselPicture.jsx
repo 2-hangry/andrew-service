@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CarouselPictureBanner from './CarouselPictureBanner';
-import { CarouselPhotoGrid, PictureContainer, CarouselPhoto } from './styles/carouselPictureStyles';
+import { PictureContainer, CarouselPhoto } from './styles/carouselPictureStyles';
 
 const CarouselPicture = ({
   photo, focusState, user, showModal,
 }) => (
-  <CarouselPhotoGrid>
+  <div>
     <PictureContainer focusState={focusState} onClick={() => showModal(photo.id)}>
       <CarouselPhoto src={photo.imageUrl} alt="business food or service" />
       <CarouselPictureBanner user={user} photo={photo} />
     </PictureContainer>
-  </CarouselPhotoGrid>
+  </div>
 );
 
 export default CarouselPicture;

@@ -1,13 +1,10 @@
 import styled from 'styled-components';
 
 export const ModalInfoContainer = styled.div`
-  position: relative;
-  float: left;
-  height: 100%;
-  width: 23%;
   border-top-right-radius: 7px;
   border-bottom-right-radius: 7px;
   background: white;
+  overflow: scroll;
 `;
 
 export const UserInfo = styled.div`
