@@ -10,7 +10,6 @@ const PhotosModal = ({
   handleRightArrowClick,
   hideModal,
   pictureIdx,
-  url,
   data,
 }) => {
   const pluckUserInfoForPhoto = ({ users }, targetPhoto) => {
@@ -31,7 +30,6 @@ const PhotosModal = ({
           photo={data.photos[pictureIdx]}
           handleRightArrowClick={handleRightArrowClick}
           handleLeftArrowClick={handleLeftArrowClick}
-          url={url}
           pictureIdx={pictureIdx}
           pictureCount={data.photos.length}
         />
@@ -54,7 +52,6 @@ PhotosModal.propTypes = {
   hideModal: PropTypes.func.isRequired,
   handleLeftArrowClick: PropTypes.func.isRequired,
   handleRightArrowClick: PropTypes.func.isRequired,
-  url: PropTypes.string.isRequired,
   pictureIdx: PropTypes.number.isRequired,
   data: PropTypes.shape({
     photos: PropTypes.array.isRequired,

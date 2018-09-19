@@ -12,20 +12,20 @@ const app = express();
 app.use(express.static(DIR_PATH));
 app.use(cors());
 
-app.get('/businesses/:id/images', (req, res) => {
+app.get('/:id/images', (req, res) => {
   resBuilder
     .buildGetResponse(req.params.id)
     .then(data => res.json(data))
     .catch(err => res.send(err));
 });
 
-app.post('/images/:imgId/helpful', (req, res) => {
+app.post('/:id/images/:imgId/helpful', (req, res) => {
   db.updateHelpfulCount(req.params.imgId)
     .then(data => res.json(data))
     .catch(err => res.send(err));
 });
 
-app.post('/images/:imgId/report', (req, res) => {
+app.post('/:id/images/:imgId/report', (req, res) => {
   db.updateReported(req.params.imgId)
     .then(data => res.json(data))
     .catch(err => res.send(err));

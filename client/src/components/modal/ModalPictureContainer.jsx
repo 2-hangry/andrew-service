@@ -11,9 +11,9 @@ export default class ModalPictureContainer extends Component {
   }
 
   updateImageReported() {
-    const { url, photo } = this.props;
+    const { photo } = this.props;
     axios
-      .post(`${url}/images/${photo.id}/report`)
+      .post(`/api${window.location.pathname}images/${photo.id}/report`)
       .then(() => {})
       .catch(err => console.error(err));
   }
@@ -45,7 +45,6 @@ ModalPictureContainer.propTypes = {
   handleRightArrowClick: PropTypes.func.isRequired,
   pictureIdx: PropTypes.number.isRequired,
   pictureCount: PropTypes.number.isRequired,
-  url: PropTypes.string.isRequired,
   photo: PropTypes.shape({
     imageId: PropTypes.number,
     businessId: PropTypes.number,
