@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
 export const PhotoCarouselBox = styled.div`
-  margin-top: 50px;
-  margin-left: auto;
-  margin-right: auto;
   width: 660px;
   height: 220px;
   position: relative;

@@ -13,7 +13,7 @@ export default class ModalPictureContainer extends Component {
   updateImageReported() {
     const { photo } = this.props;
     axios
-      .post(`businesses/${photo.businessId}/images/${photo.id}/report`)
+      .post(`/api${window.location.pathname}images/${photo.id}/report`)
       .then(() => {})
       .catch(err => console.error(err));
   }
