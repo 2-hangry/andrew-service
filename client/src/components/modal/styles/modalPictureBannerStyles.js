@@ -3,16 +3,17 @@ import styled from 'styled-components';
 export const ModalPictureBannerContainer = styled.div`
   position: absolute;
   bottom: 0px;
-  width: 77%;
+  width: 100%;
   height: 30px;
   background: rgba(0, 0, 0, 0.603);
   color: grey;
+  display: flex;
+  align-items: center;
+  align-content: center;
 `;
 
 const BannerItem = styled.i`
-  position: absolute;
   background: transparent;
-  top: 20%;
   border: transparent;
   color: rgba(255, 255, 255, 0.692);
 
@@ -23,12 +24,14 @@ const BannerItem = styled.i`
 `;
 
 export const BrowseAll = styled(BannerItem)`
-  left: 0.5%;
+  flex: 1;
+  justify-self: flex-start;
+  align-self: center;
+  padding-left: 10px;
 
   p {
     display: inline;
-    position: relative;
-    left: 5px;
+    margin-left: 5px;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 12px;
     font-weight: bold;
@@ -36,14 +39,16 @@ export const BrowseAll = styled(BannerItem)`
 `;
 
 export const MediaWrapper = styled.div`
-  position: absolute;
-  height: 30px;
-  width: 170px;
-  right: 1%;
+  flex: 1;
+  justify-self: flex-end;
+  align-self: center;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 export const Share = styled(BannerItem)`
-  display: inline;
+  padding-right: 10px;
+
   p {
     display: inline;
     left: 5px;
@@ -54,8 +59,6 @@ export const Share = styled(BannerItem)`
 `;
 
 export const Compliment = styled(BannerItem)`
-  margin-left: 60px;
-  display: inline;
   p {
     display: inline;
     left: 7px;
@@ -67,8 +70,7 @@ export const Compliment = styled(BannerItem)`
 
 export const ReportFlag = styled(BannerItem)`
   font-size: 15px;
-  display: inline;
-  margin-left: 155px;
+  margin: 0px 10px;
   color: ${props => (props.isReported ? 'red' : 'rgba(255, 255, 255, 0.692)')};
 
   &:hover {
@@ -77,9 +79,12 @@ export const ReportFlag = styled(BannerItem)`
 `;
 
 export const PictureCount = styled(BannerItem)`
+  flex: 1;
+  align-self: center;
+  justify-content: center;
+  text-align: center;
   color: rgba(255, 255, 255, 0.692);
   font-size: 11px;
-  left: 48%;
 
   &:hover {
     color: rgba(255, 255, 255, 0.692);

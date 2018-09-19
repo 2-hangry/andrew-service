@@ -1,12 +1,10 @@
 import styled from 'styled-components';
 
 export const ModalPictureBox = styled.div`
-  float: left;
-  height: 100%;
-  width: 77%;
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
   background: rgba(0, 0, 0, 0.918);
+  position: relative;
 
   img {
     object-fit: contain;
@@ -46,7 +44,7 @@ export const LeftModalBtn = styled(ModalBtn)`
 
 export const RightModalBtn = styled(ModalBtn)`
   transform: rotate(45deg);
-  left: 73%;
+  right: 2%;
   border-color: ${props => (props.pictureIdx === props.pictureCount - 1
     ? 'rgba(255, 255, 255, 0.315)'
     : 'rgba(255, 255, 255, 0.692)')};

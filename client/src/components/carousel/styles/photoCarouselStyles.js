@@ -4,6 +4,8 @@ export const PhotoCarouselBox = styled.div`
   width: 660px;
   height: 220px;
   position: relative;
+  display: grid;
+  grid-template-columns: auto auto auto;
 
   button {
     position: absolute;
@@ -21,9 +23,9 @@ export const PhotoCarouselBox = styled.div`
 `;
 
 export const CarouselPhotos = styled.div`
-  margin: auto;
-  width: 660px;
-  height: 220px;
+  display: grid;
+  grid-template-columns: 220px 220px 220px;
+  grid-template-rows: auto;
 `;
 
 export const LeftCarouselBtn = styled.button`
