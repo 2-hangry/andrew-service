@@ -3,17 +3,10 @@ const config = require('./config.js');
 
 const password = config.AWS_RDS || process.env.RDS_PASS;
 
-// const db = sql.createConnection({
-//   host: 'photos-carousel.cqtnzbmw2i5p.us-east-2.rds.amazonaws.com',
-//   user: 'admin',
-//   password,
-//   database: 'photo_carousel',
-// });
-
 const db = sql.createConnection({
-  host: '127.0.0.1',
-  user: 'root',
-  password: '',
+  host: 'photos-carousel.cqtnzbmw2i5p.us-east-2.rds.amazonaws.com',
+  user: 'admin',
+  password,
   database: 'photo_carousel',
 });
 
