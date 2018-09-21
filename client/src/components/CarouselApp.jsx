@@ -23,9 +23,16 @@ export default class CarouselApp extends Component {
     axios
       .get(`/api${window.location.pathname}images`)
       .then((response) => {
+        if (this.isUnmounted) {
+          return;
+        }
         this.setState({ data: response.data });
       })
       .catch(err => console.error(err));
+  }
+
+  componentWillUnmount() {
+    this.isUnmounted = true;
   }
 
   showPhotosModal(photoId) {
