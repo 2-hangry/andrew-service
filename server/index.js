@@ -4,7 +4,7 @@ const cors = require('cors');
 const resBuilder = require('./responseBuilders');
 const db = require('../db/index');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 const DIR_PATH = path.join(__dirname, '/../public/dist');
 
 const app = express();
@@ -31,4 +31,4 @@ app.post('/:id/images/:imgId/report', (req, res) => {
     .catch(err => res.send(err));
 });
 
-app.listen(port, () => console.log('listening on port 3000'));
+app.listen(port, () => console.log(`listening on port ${port}`));

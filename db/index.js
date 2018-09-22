@@ -1,11 +1,11 @@
 const sql = require('mysql');
-const config = require('./config.js');
 
-const password = config.AWS_RDS || process.env.RDS_PASS;
+const password = process.env.RDS_PASS;
+const user = process.env.RDS_USER;
 
 const db = sql.createConnection({
   host: 'photos-carousel.cqtnzbmw2i5p.us-east-2.rds.amazonaws.com',
-  user: 'admin',
+  user,
   password,
   database: 'photo_carousel',
 });
