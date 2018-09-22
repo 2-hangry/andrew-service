@@ -6,7 +6,7 @@ const photoUrls = require('./photoUrls');
 
 const makePhoto = () => `${faker.random.number(100)},${faker.random.number(50)},${faker.random.arrayElement(
   photoUrls.urls,
-)},${faker.date.past(5)},${faker.lorem.sentence(10)},${faker.random.number(50)},false`;
+)},${faker.date.past(5)},${faker.lorem.sentence(10)},${faker.random.number(50)},false,false`;
 
 const makePhotos = () => {
   let photosCSV = 'businessId,imageUploaderId,imageUrl,imageUploadDate,imageComment,helpfulCount,reported\n';

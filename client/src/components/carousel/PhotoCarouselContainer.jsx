@@ -43,9 +43,6 @@ export default class PhotoCarouselContainer extends Component {
     const { data, showModal } = this.props;
     const { pictureIdx, defaultFocusState } = this.state;
 
-    if (data === undefined) {
-      return <div>Loading...</div>;
-    }
     return (
       <PhotoCarousel
         pictureIdx={pictureIdx}

@@ -1,7 +1,7 @@
 const sql = require('mysql');
 
-const password = process.env.RDS_PASS;
-const user = process.env.RDS_USER;
+const password = process.env.RDS_PASS || 'won-pant-panatela';
+const user = process.env.RDS_USER || 'admin';
 
 const db = sql.createConnection({
   host: 'photos-carousel.cqtnzbmw2i5p.us-east-2.rds.amazonaws.com',
@@ -63,7 +63,7 @@ const updateReported = photoId => new Promise((res, rej) => {
 
 const updateHelpfulCount = photoId => new Promise((res, rej) => {
   db.query(
-    `UPDATE photos SET helpfulCount = helpfulCount + 1 WHERE id = ${photoId}`,
+    `UPDATE photos SET helpfulCount = helpfulCount + 1, voted = 1 WHERE id = ${photoId}`,
     (err, results, fields) => {
       if (err) {
         rej(err);

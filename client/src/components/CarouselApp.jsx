@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import PhotoCarouselContainer from './carousel/PhotoCarouselContainer';
-import PhotosModal from './modal/PhotosModal';
-import AppWrapper from './carouselAppStyles';
+import PhotosModalContainer from './modal/PhotosModalContainer';
+import { AppWrapper, PhotosPreLoader } from './carouselAppStyles';
 
 export default class CarouselApp extends Component {
   constructor(props) {
@@ -13,6 +13,7 @@ export default class CarouselApp extends Component {
       modalIdx: 0,
     };
 
+    this.getBusinessData = this.getBusinessData.bind(this);
     this.showPhotosModal = this.showPhotosModal.bind(this);
     this.hidePhotosModal = this.hidePhotosModal.bind(this);
     this.handleModalRightArrowClick = this.handleModalRightArrowClick.bind(this);
@@ -20,6 +21,14 @@ export default class CarouselApp extends Component {
   }
 
   componentDidMount() {
+    this.getBusinessData();
+  }
+
+  componentWillUnmount() {
+    this.isUnmounted = true;
+  }
+
+  getBusinessData() {
     axios
       .get(`/api${window.location.pathname}images`)
       .then((response) => {
@@ -29,10 +38,6 @@ export default class CarouselApp extends Component {
         this.setState({ data: response.data });
       })
       .catch(err => console.error(err));
-  }
-
-  componentWillUnmount() {
-    this.isUnmounted = true;
   }
 
   showPhotosModal(photoId) {
@@ -69,17 +74,26 @@ export default class CarouselApp extends Component {
   render() {
     const { data, modalIsDisplayed, modalIdx } = this.state;
 
+    if (data === undefined) {
+      return <div>Loading...</div>;
+    }
     return (
       <AppWrapper>
         <PhotoCarouselContainer data={data} showModal={this.showPhotosModal} />
-        <PhotosModal
-          isDisplayed={modalIsDisplayed}
+        <PhotosModalContainer
+          getData={this.getBusinessData}
           hideModal={this.hidePhotosModal}
           handleRightArrowClick={this.handleModalRightArrowClick}
           handleLeftArrowClick={this.handleModalLeftArrowClick}
+          isDisplayed={modalIsDisplayed}
           pictureIdx={modalIdx}
           data={data}
         />
+        <PhotosPreLoader>
+          {data.photos.map(photo => (
+            <img key={photo.id} src={photo.imageUrl} alt="pre-loaded non-display" />
+          ))}
+        </PhotosPreLoader>
       </AppWrapper>
     );
   }

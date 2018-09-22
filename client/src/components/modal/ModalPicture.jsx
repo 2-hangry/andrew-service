@@ -25,6 +25,7 @@ const ModalPicture = ({
       pictureIdx={pictureIdx}
       updateImageReported={updateImageReported}
       isReported={photo.reported}
+      photoId={photo.id}
     />
   </ModalPictureBox>
 );
