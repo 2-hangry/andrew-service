@@ -28,6 +28,7 @@ CREATE TABLE photos (
   imageUploadDate tinytext NOT NULL,
   imageComment mediumtext NOT NULL,
   helpfulCount int NOT NULL,
+  voted boolean NOT NULL,
   reported boolean NOT NULL,
   FOREIGN KEY (businessId) REFERENCES businesses(id),
   FOREIGN KEY (imageUploaderId) REFERENCES users(id),
