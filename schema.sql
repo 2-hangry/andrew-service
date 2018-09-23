@@ -50,5 +50,11 @@ SET id = NULL;
 LOAD DATA LOCAL INFILE './dataGenAndSeeding/csvFiles/photos.csv' INTO TABLE photos
 FIELDS TERMINATED BY ','
 IGNORE 1 LINES
-(businessId,imageUploaderId,imageUrl,imageUploadDate,imageComment,helpfulCount,reported)
+(businessId,imageUploaderId,imageUrl,imageUploadDate,imageComment,helpfulCount,voted,reported)
+SET id = NULL;
+
+LOAD DATA LOCAL INFILE './dataGenAndSeeding/csvFiles/photosForSingleBiz.csv' INTO TABLE photos
+FIELDS TERMINATED BY ','
+IGNORE 1 LINES
+(businessId,imageUploaderId,imageUrl,imageUploadDate,imageComment,helpfulCount,voted,reported)
 SET id = NULL;
