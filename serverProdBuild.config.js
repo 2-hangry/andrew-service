@@ -18,17 +18,6 @@ module.exports = {
     filename: 'bundle.js',
     path: DIST_DIR,
   },
-  module: {
-    rules: [
-      {
-        include: SRC_DIR,
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env'],
-        },
-      },
-    ],
-  },
   resolve: {
     extensions: ['.js', '.json', '.css'],
   },

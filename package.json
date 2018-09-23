@@ -12,7 +12,8 @@
     "server-dev": "nodemon ./server/index.js",
     "test": "jest",
     "build": "webpack -d --watch",
-    "prd-build": "webpack -p --config ./serverProdBuild.config.js",
+    "prd-build-client": "webpack -p",
+    "prd-build-server": "webpack -p --config ./serverProdBuild.config.js",
     "seed-db": "mysql -h photos-carousel.cqtnzbmw2i5p.us-east-2.rds.amazonaws.com -P 3306 -u admin -p --local-infile photo_carousel < ./schema.sql",
     "generate-data": "node ./dataGenAndSeeding/dataGenerators.js"
   },

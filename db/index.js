@@ -1,7 +1,7 @@
 const sql = require('mysql');
 
-const password = process.env.RDS_PASS || 'won-pant-panatela';
-const user = process.env.RDS_USER || 'admin';
+const password = process.env.RDS_PASS;
+const user = process.env.RDS_USER;
 
 const db = sql.createConnection({
   host: 'photos-carousel.cqtnzbmw2i5p.us-east-2.rds.amazonaws.com',

@@ -8,7 +8,7 @@
     "node": "10-alpine"
   },
   "scripts": {
-    "start": "node ./server/index.js"
+    "start": "node ./public/dist/bundle.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",

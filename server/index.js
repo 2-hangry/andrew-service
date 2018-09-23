@@ -4,7 +4,7 @@ const cors = require('cors');
 const resBuilder = require('./responseBuilders');
 const db = require('../db/index');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 const DIR_PATH = path.join(__dirname, '/../public');
 
 const app = express();
