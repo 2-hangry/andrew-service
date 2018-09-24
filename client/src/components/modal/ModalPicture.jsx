@@ -9,22 +9,25 @@ const ModalPicture = ({
   handleLeftArrowClick,
   updateImageReported,
   pictureIdx,
-  pictureCount,
+  photosCount,
+  photoCountPosition,
+  listSize,
 }) => (
   <ModalPictureBox>
     <LeftModalBtn pictureIdx={pictureIdx} type="button" onClick={handleLeftArrowClick} />
     <img src={photo.imageUrl} alt="user submitted" />
     <RightModalBtn
       pictureIdx={pictureIdx}
-      pictureCount={pictureCount}
+      listSize={listSize}
       type="button"
       onClick={handleRightArrowClick}
     />
     <ModalPictureBanner
-      pictureCount={pictureCount}
-      pictureIdx={pictureIdx}
+      photosCount={photosCount}
+      photoCountPosition={photoCountPosition}
       updateImageReported={updateImageReported}
       isReported={photo.reported}
+      photoId={photo.id}
     />
   </ModalPictureBox>
 );
@@ -36,7 +39,9 @@ ModalPicture.propTypes = {
   handleRightArrowClick: PropTypes.func.isRequired,
   updateImageReported: PropTypes.func.isRequired,
   pictureIdx: PropTypes.number.isRequired,
-  pictureCount: PropTypes.number.isRequired,
+  photosCount: PropTypes.number.isRequired,
+  photoCountPosition: PropTypes.number.isRequired,
+  listSize: PropTypes.number.isRequired,
   photo: PropTypes.shape({
     imageId: PropTypes.number,
     businessId: PropTypes.number,

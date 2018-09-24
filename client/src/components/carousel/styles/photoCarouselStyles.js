@@ -48,7 +48,7 @@ export const RightCarouselBtn = styled.button`
   transition: transform 0.15s;
   transform: rotate(45deg);
   right: -40px;
-  border-color: ${props => (props.pictureIdx === props.listSize
+  border-color: ${props => (props.pictureIdx + 2 === props.listSize
     ? 'rgba(255, 255, 255, 0.315)'
     : 'rgba(255, 255, 255, 0.692)')};
 
@@ -57,7 +57,9 @@ export const RightCarouselBtn = styled.button`
   }
 
   &:hover {
-    border-color: ${props => (props.pictureIdx === props.listSize ? 'rgba(255, 255, 255, 0.315)' : 'rgb(255, 255, 255)')};
+    border-color: ${props => (props.pictureIdx + 2 === props.listSize
+    ? 'rgba(255, 255, 255, 0.315)'
+    : 'rgb(255, 255, 255)')};
     cursor: ${props => (props.pictureIdx === props.listSize ? 'default' : 'pointer')};
   }
 `;

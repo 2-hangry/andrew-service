@@ -24,3 +24,6 @@ coverage
 build/
 dist/
 
+# Env vars
+db/config.js
+

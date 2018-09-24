@@ -19,10 +19,9 @@ import {
   Reservation,
   Arrow,
   Cal,
-  HelpfulCount,
 } from './styles/modalInfoStyles';
 
-const ModalInfo = ({ photo, user }) => {
+const ModalInfo = ({ photo, user, updateHelpful }) => {
   const createUserNamePreview = (targetUser) => {
     const firstMiddleLast = targetUser.userName.split(' ');
     const lastInitial = firstMiddleLast[firstMiddleLast.length - 1].split('').slice(0, 1);
@@ -63,12 +62,16 @@ const ModalInfo = ({ photo, user }) => {
       <HelpfulUi>
         <HelpfulPrompt>Was this photo ...?</HelpfulPrompt>
         <HelpfulButtonsContainer>
-          <HelpfulButton type="button">
+          <HelpfulButton
+            voted={photo.voted}
+            type="button"
+            onClick={() => updateHelpful(photo.id, photo.voted)}
+          >
             <Arrow className="fa fa-arrow-up" />
             Helpful
-            <HelpfulCount>{photo.helpfulCount}</HelpfulCount>
+            <b>{photo.helpfulCount}</b>
           </HelpfulButton>
-          <HelpfulButton type="button">
+          <HelpfulButton voted={false} type="button">
             <Arrow className="fa fa-arrow-down" />
             Not Helpful
           </HelpfulButton>
@@ -87,4 +90,5 @@ export default ModalInfo;
 ModalInfo.propTypes = {
   photo: PropTypes.instanceOf(Object).isRequired,
   user: PropTypes.instanceOf(Object).isRequired,
+  updateHelpful: PropTypes.func.isRequired,
 };

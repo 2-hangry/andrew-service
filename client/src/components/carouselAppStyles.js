@@ -4,4 +4,14 @@ const AppWrapper = styled.div`
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 `;
 
-export default AppWrapper;
+const PhotosPreLoader = styled.div`
+  width: 0px;
+  height: 0px;
+  display: none;
+
+  img {
+    display: none;
+  }
+`;
+
+export { AppWrapper, PhotosPreLoader };

@@ -123,19 +123,21 @@ export const HelpfulButton = styled.button`
   height: 30px;
   font-size: 12px;
   font-weight: bold;
-  color: rgb(90, 90, 90);
+  background-color: ${props => (props.voted ? 'rgb(0, 136, 226)' : 'default')};
+  color: ${props => (props.voted ? 'white' : 'rgb(90, 90, 90)')};
   border-radius: 4px;
   outline: none;
   padding: 0px 11px;
 
+  & b {
+    color: ${props => (props.voted ? 'white' : 'rgb(90, 90, 90)')};
+    font-weight: 300;
+    margin-left: 4px;
+  }
+
   &:hover {
     cursor: pointer;
   }
-`;
-
-export const HelpfulCount = styled.b`
-  font-weight: 300;
-  margin-left: 4px;
 `;
 
 export const Arrow = styled.i`
