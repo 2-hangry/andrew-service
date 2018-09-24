@@ -4,10 +4,10 @@ import CarouselPictureBanner from './CarouselPictureBanner';
 import { PictureContainer, CarouselPhoto } from './styles/carouselPictureStyles';
 
 const CarouselPicture = ({
-  photo, focusState, user, showModal,
+  photo, focusState, user, showModal, position,
 }) => (
   <div>
-    <PictureContainer focusState={focusState} onClick={() => showModal(photo.id)}>
+    <PictureContainer focusState={focusState} onClick={() => showModal(photo.id, position)}>
       <CarouselPhoto src={photo.imageUrl} alt="business food or service" />
       <CarouselPictureBanner user={user} photo={photo} />
     </PictureContainer>
@@ -25,4 +25,5 @@ CarouselPicture.propTypes = {
   showModal: PropTypes.func.isRequired,
   photo: PropTypes.instanceOf(Object).isRequired,
   user: PropTypes.instanceOf(Object).isRequired,
+  position: PropTypes.number.isRequired,
 };

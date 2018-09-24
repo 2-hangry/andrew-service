@@ -12,9 +12,15 @@ const app = express();
 app.use('/images-service/:id', express.static(DIR_PATH));
 app.use(cors());
 
-app.get('*/:id/images', (req, res) => {
+app.get('*/:id/images/count', (req, res) => {
+  db.countPhotos(req.params.id)
+    .then(data => res.json(data[0]))
+    .catch(err => res.send(err));
+});
+
+app.get('*/:id/images/:imgId', (req, res) => {
   resBuilder
-    .buildGetResponse(req.params.id)
+    .buildGetResponse(req.params.id, req.params.imgId)
     .then(data => res.json(data))
     .catch(err => res.send(err));
 });

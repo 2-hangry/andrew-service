@@ -59,7 +59,7 @@ export default class PhotosModalContainer extends Component {
       return null;
     }
 
-    if (data === undefined) {
+    if (pictureIdx > data.photos.length) {
       return null;
     }
 

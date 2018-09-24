@@ -12,12 +12,14 @@ export default class CarouselApp extends Component {
       carouselData: undefined,
       modalData: undefined,
       photosCount: 0,
-      photoCountPosition: 0,
+      photoCountPosition: 1,
+      photoCountPositionRestore: 0,
       modalIsDisplayed: false,
       modalIdx: 0,
     };
 
     this.indexModal = this.indexModal.bind(this);
+    this.updatePhotoCountPosition = this.updatePhotoCountPosition.bind(this);
     this.getBusinessData = this.getBusinessData.bind(this);
     this.showPhotosModal = this.showPhotosModal.bind(this);
     this.hidePhotosModal = this.hidePhotosModal.bind(this);
@@ -67,26 +69,28 @@ export default class CarouselApp extends Component {
 
   indexModal(photoId) {
     const { modalData } = this.state;
+
     const idx = modalData.photos.findIndex(photo => photo.id === photoId);
     this.setState({ modalIdx: idx });
   }
 
-  showPhotosModal(photoId) {
-    const { carouselData } = this.state;
-    const idx = carouselData.photos.findIndex(photo => photo.id === photoId);
+  showPhotosModal(photoId, ajuster = 0) {
+    const { carouselData, photoCountPosition } = this.state;
 
     this.setState(
       {
         modalIsDisplayed: true,
         modalData: carouselData,
-        photoCountPosition: idx + 1,
+        photoCountPosition: photoCountPosition + ajuster,
+        photoCountPositionRestore: photoCountPosition,
       },
       () => this.indexModal(photoId),
     );
   }
 
   hidePhotosModal() {
-    this.setState({ modalIsDisplayed: false });
+    const { photoCountPositionRestore } = this.state;
+    this.setState({ modalIsDisplayed: false, photoCountPosition: photoCountPositionRestore });
   }
 
   updateModalData(isDownsizing) {
@@ -110,31 +114,40 @@ export default class CarouselApp extends Component {
     }
   }
 
+  updatePhotoCountPosition(isIncreasing) {
+    const { photoCountPosition } = this.state;
+    let direction = -1;
+    if (isIncreasing) {
+      direction = 1;
+    }
+    this.setState({ photoCountPosition: photoCountPosition + direction });
+  }
+
   handleModalRightArrowClick() {
-    const { modalIdx, modalData, photoCountPosition } = this.state;
+    const { modalIdx, modalData } = this.state;
 
     if (modalIdx < modalData.photos.length - 1) {
       this.setState(
         {
           modalIdx: modalIdx + 1,
-          photoCountPosition: photoCountPosition + 1,
         },
         () => this.updateModalData(),
       );
+      this.updatePhotoCountPosition(true);
     }
   }
 
   handleModalLeftArrowClick() {
-    const { modalIdx, photoCountPosition } = this.state;
+    const { modalIdx } = this.state;
 
     if (modalIdx > 0) {
       this.setState(
         {
           modalIdx: modalIdx - 1,
-          photoCountPosition: photoCountPosition - 1,
         },
         () => this.updateModalData(true),
       );
+      this.updatePhotoCountPosition();
     }
   }
 
@@ -153,7 +166,12 @@ export default class CarouselApp extends Component {
     }
     return (
       <AppWrapper>
-        <PhotoCarouselContainer data={carouselData} showModal={this.showPhotosModal} />
+        <PhotoCarouselContainer
+          data={carouselData}
+          showModal={this.showPhotosModal}
+          getData={this.getBusinessData}
+          updatePhotoCountPosition={this.updatePhotoCountPosition}
+        />
         <PhotosModalContainer
           getData={this.getBusinessData}
           hideModal={this.hidePhotosModal}

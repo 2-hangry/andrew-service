@@ -31,17 +31,20 @@ const PhotoCarousel = ({
       <CarouselPhotos>
         <CarouselPicture
           showModal={showModal}
+          position={0}
           user={pluckUserInfoForPhoto(users, photos[pictureIdx])}
           photo={photos[pictureIdx]}
         />
         <CarouselPicture
           showModal={showModal}
           focusState={focusState}
+          position={1}
           user={pluckUserInfoForPhoto(users, photos[pictureIdx + 1])}
           photo={photos[pictureIdx + 1]}
         />
         <CarouselPicture
           showModal={showModal}
+          position={2}
           user={pluckUserInfoForPhoto(users, photos[pictureIdx + 2])}
           photo={photos[pictureIdx + 2]}
         />

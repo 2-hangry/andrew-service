@@ -29,7 +29,7 @@ const retrieveUsers = userIdList => new Promise((res, rej) => {
 });
 
 const retrieveBusiness = id => new Promise((res, rej) => {
-  db.query(`SELECT businessName FROM businesses WHERE id = ${id}`, (err, results) => {
+  db.query(`SELECT businessName FROM businesses WHERE id = ${id} LIMIT 50`, (err, results) => {
     if (err) {
       rej(err);
     } else {
@@ -38,14 +38,45 @@ const retrieveBusiness = id => new Promise((res, rej) => {
   });
 });
 
-const retrievePhotos = businessId => new Promise((res, rej) => {
-  db.query(`SELECT * FROM photos WHERE businessId = ${businessId}`, (err, results) => {
-    if (err) {
-      rej(err);
-    } else {
-      res(results);
-    }
-  });
+const retrievePhotos = (businessId, photoId) => new Promise((res, rej) => {
+  db.query(
+    `SELECT  A.* FROM  (
+    (
+       SELECT  *  FROM photos
+       WHERE id <= ${photoId} AND businessId = ${businessId}
+       ORDER BY id DESC
+       LIMIT 15
+    )
+   UNION
+    (
+       SELECT * FROM photos
+       WHERE id > ${photoId} AND businessId = ${businessId}
+       ORDER BY id ASC
+       LIMIT 15
+    )
+  ) as A
+  ORDER BY A.id`,
+    (err, results) => {
+      if (err) {
+        rej(err);
+      } else {
+        res(results);
+      }
+    },
+  );
+});
+
+const countPhotos = businessId => new Promise((res, rej) => {
+  db.query(
+    `SELECT COUNT(*) as total FROM photos WHERE businessId = ${businessId}`,
+    (err, results) => {
+      if (err) {
+        rej(err);
+      } else {
+        res(results);
+      }
+    },
+  );
 });
 
 const updateReported = photoId => new Promise((res, rej) => {
@@ -81,6 +112,7 @@ module.exports = {
   retrieveUsers,
   retrieveBusiness,
   retrievePhotos,
+  countPhotos,
   updateReported,
   updateHelpfulCount,
 };
