@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const compression = require('compression');
 const resBuilder = require('./responseBuilders');
 const db = require('../db/index');
 
@@ -10,6 +11,7 @@ const DIR_PATH = path.join(__dirname, '/../public');
 const app = express();
 
 app.use('/images-service/:id', express.static(DIR_PATH));
+app.use(compression());
 app.use(cors());
 
 app.get('*/:id/images/count', (req, res) => {
