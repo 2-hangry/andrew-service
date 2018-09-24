@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ModalPicture from './ModalPicture';
 import ModalInfo from './ModalInfo';
 import { BackDrop, Modal } from './styles/photosModalStyles';
+import { PhotosPreLoader } from '../carouselAppStyles';
 
 export default class PhotosModalContainer extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ export default class PhotosModalContainer extends Component {
     axios
       .post(`/api${window.location.pathname}images/${photoId}/report`)
       .then(() => {
-        getData();
+        getData('modal', photoId);
       })
       .catch(err => console.error(err));
   }
@@ -30,7 +31,7 @@ export default class PhotosModalContainer extends Component {
       axios
         .post(`/api${window.location.pathname}images/${photoId}/helpful`)
         .then(() => {
-          getData();
+          getData('modal', photoId);
         })
         .catch(err => console.error(err));
     }
@@ -43,6 +44,8 @@ export default class PhotosModalContainer extends Component {
       handleRightArrowClick,
       hideModal,
       pictureIdx,
+      photosCount,
+      photoCountPosition,
       data,
     } = this.props;
 
@@ -56,6 +59,10 @@ export default class PhotosModalContainer extends Component {
       return null;
     }
 
+    if (data === undefined) {
+      return null;
+    }
+
     return (
       <div>
         <BackDrop onClick={hideModal} />
@@ -66,7 +73,9 @@ export default class PhotosModalContainer extends Component {
             handleLeftArrowClick={handleLeftArrowClick}
             updateImageReported={this.updateImageReported}
             pictureIdx={pictureIdx}
-            pictureCount={data.photos.length}
+            photosCount={photosCount}
+            photoCountPosition={photoCountPosition}
+            listSize={data.photos.length}
           />
           <ModalInfo
             photo={data.photos[pictureIdx]}
@@ -74,6 +83,11 @@ export default class PhotosModalContainer extends Component {
             updateHelpful={this.updateHelpfulCount}
           />
         </Modal>
+        <PhotosPreLoader>
+          {data.photos.map(photo => (
+            <img key={photo.id} src={photo.imageUrl} alt="pre-loaded non-display" />
+          ))}
+        </PhotosPreLoader>
       </div>
     );
   }
@@ -90,6 +104,8 @@ PhotosModalContainer.propTypes = {
   handleLeftArrowClick: PropTypes.func.isRequired,
   handleRightArrowClick: PropTypes.func.isRequired,
   pictureIdx: PropTypes.number.isRequired,
+  photosCount: PropTypes.number.isRequired,
+  photoCountPosition: PropTypes.number.isRequired,
   data: PropTypes.shape({
     photos: PropTypes.array.isRequired,
     users: PropTypes.array.isRequired,

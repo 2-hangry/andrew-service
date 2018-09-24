@@ -1,8 +1,8 @@
 const db = require('../db/index');
 
-const buildGetResponse = async (id) => {
-  const business = db.retrieveBusiness(id);
-  const photos = await db.retrievePhotos(id);
+const buildGetResponse = async (businessId, imageId) => {
+  const business = db.retrieveBusiness(businessId);
+  const photos = await db.retrievePhotos(businessId, imageId);
 
   const photoUserIds = [];
 

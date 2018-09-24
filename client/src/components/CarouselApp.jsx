@@ -9,77 +9,151 @@ export default class CarouselApp extends Component {
     super(props);
 
     this.state = {
+      carouselData: undefined,
+      modalData: undefined,
+      photosCount: 0,
+      photoCountPosition: 0,
       modalIsDisplayed: false,
       modalIdx: 0,
     };
 
+    this.indexModal = this.indexModal.bind(this);
     this.getBusinessData = this.getBusinessData.bind(this);
     this.showPhotosModal = this.showPhotosModal.bind(this);
     this.hidePhotosModal = this.hidePhotosModal.bind(this);
+    this.updateModalData = this.updateModalData.bind(this);
     this.handleModalRightArrowClick = this.handleModalRightArrowClick.bind(this);
     this.handleModalLeftArrowClick = this.handleModalLeftArrowClick.bind(this);
   }
 
   componentDidMount() {
-    this.getBusinessData();
+    this.getBusinessData('carousel');
+    axios
+      .get(`/api${window.location.pathname}images/count`)
+      .then((response) => {
+        if (this.isUnmounted) {
+          return;
+        }
+        this.setState({ photosCount: response.data.total });
+      })
+      .catch(err => console.error(err));
   }
 
   componentWillUnmount() {
     this.isUnmounted = true;
   }
 
-  getBusinessData() {
+  getBusinessData(dataGroupSelector, currentDisplayedPhotoId = 1) {
     axios
-      .get(`/api${window.location.pathname}images`)
+      .get(`/api${window.location.pathname}images/${currentDisplayedPhotoId}`)
       .then((response) => {
         if (this.isUnmounted) {
           return;
         }
-        this.setState({ data: response.data });
+        if (dataGroupSelector === 'modal') {
+          this.setState(
+            {
+              modalData: response.data,
+            },
+            () => this.indexModal(currentDisplayedPhotoId),
+          );
+        }
+        if (dataGroupSelector === 'carousel') {
+          this.setState({ carouselData: response.data });
+        }
       })
       .catch(err => console.error(err));
   }
 
-  showPhotosModal(photoId) {
-    const { data } = this.state;
-    const idx = data.photos.findIndex(photo => photo.id === photoId);
+  indexModal(photoId) {
+    const { modalData } = this.state;
+    const idx = modalData.photos.findIndex(photo => photo.id === photoId);
+    this.setState({ modalIdx: idx });
+  }
 
-    this.setState({
-      modalIsDisplayed: true,
-      modalIdx: idx,
-    });
+  showPhotosModal(photoId) {
+    const { carouselData } = this.state;
+    const idx = carouselData.photos.findIndex(photo => photo.id === photoId);
+
+    this.setState(
+      {
+        modalIsDisplayed: true,
+        modalData: carouselData,
+        photoCountPosition: idx + 1,
+      },
+      () => this.indexModal(photoId),
+    );
   }
 
   hidePhotosModal() {
     this.setState({ modalIsDisplayed: false });
   }
 
-  handleModalRightArrowClick() {
-    const { data } = this.state;
-    let { modalIdx } = this.state;
+  updateModalData(isDownsizing) {
+    const {
+      modalData, modalIdx, photoCountPosition, photosCount,
+    } = this.state;
+    const currentModalPhotoId = modalData.photos[modalIdx].id;
 
-    if (modalIdx < data.photos.length - 1) {
-      this.setState({ modalIdx: (modalIdx += 1) });
+    if (photosCount < 15) {
+      return;
+    }
+    if (modalIdx / (modalData.photos.length - 1) > 0.85) {
+      this.getBusinessData('modal', currentModalPhotoId);
+    }
+    if (
+      modalIdx / (modalData.photos.length - 1) < 0.15
+      && isDownsizing
+      && photoCountPosition > 10
+    ) {
+      this.getBusinessData('modal', currentModalPhotoId);
+    }
+  }
+
+  handleModalRightArrowClick() {
+    const { modalIdx, modalData, photoCountPosition } = this.state;
+
+    if (modalIdx < modalData.photos.length - 1) {
+      this.setState(
+        {
+          modalIdx: modalIdx + 1,
+          photoCountPosition: photoCountPosition + 1,
+        },
+        () => this.updateModalData(),
+      );
     }
   }
 
   handleModalLeftArrowClick() {
-    let { modalIdx } = this.state;
+    const { modalIdx, photoCountPosition } = this.state;
 
     if (modalIdx > 0) {
-      this.setState({ modalIdx: (modalIdx -= 1) });
+      this.setState(
+        {
+          modalIdx: modalIdx - 1,
+          photoCountPosition: photoCountPosition - 1,
+        },
+        () => this.updateModalData(true),
+      );
     }
   }
 
   render() {
-    const { data, modalIsDisplayed, modalIdx } = this.state;
+    const {
+      modalData,
+      carouselData,
+      modalIsDisplayed,
+      modalIdx,
+      photosCount,
+      photoCountPosition,
+    } = this.state;
 
-    if (data === undefined) {
+    if (carouselData === undefined) {
       return <div>Loading...</div>;
     }
     return (
       <AppWrapper>
-        <PhotoCarouselContainer data={data} showModal={this.showPhotosModal} />
+        <PhotoCarouselContainer data={carouselData} showModal={this.showPhotosModal} />
         <PhotosModalContainer
           getData={this.getBusinessData}
           hideModal={this.hidePhotosModal}
@@ -87,10 +161,12 @@ export default class CarouselApp extends Component {
           handleLeftArrowClick={this.handleModalLeftArrowClick}
           isDisplayed={modalIsDisplayed}
           pictureIdx={modalIdx}
-          data={data}
+          photosCount={photosCount}
+          photoCountPosition={photoCountPosition}
+          data={modalData}
         />
         <PhotosPreLoader>
-          {data.photos.map(photo => (
+          {carouselData.photos.map(photo => (
             <img key={photo.id} src={photo.imageUrl} alt="pre-loaded non-display" />
           ))}
         </PhotosPreLoader>

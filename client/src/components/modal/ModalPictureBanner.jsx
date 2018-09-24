@@ -11,8 +11,8 @@ import {
 } from './styles/modalPictureBannerStyles';
 
 const ModalPictureBanner = ({
-  pictureCount,
-  pictureIdx,
+  photosCount,
+  photoCountPosition,
   updateImageReported,
   isReported,
   photoId,
@@ -21,7 +21,7 @@ const ModalPictureBanner = ({
     <BrowseAll className="fa fa-th-large">
       <p>Browse all</p>
     </BrowseAll>
-    <PictureCount>{`${pictureIdx + 1} of ${pictureCount}`}</PictureCount>
+    <PictureCount>{`${photoCountPosition} of ${photosCount}`}</PictureCount>
     <MediaWrapper>
       <Share className="fa fa-share-square-o">
         <p>Share</p>
@@ -41,8 +41,8 @@ const ModalPictureBanner = ({
 export default ModalPictureBanner;
 
 ModalPictureBanner.propTypes = {
-  pictureCount: PropTypes.number.isRequired,
-  pictureIdx: PropTypes.number.isRequired,
+  photosCount: PropTypes.number.isRequired,
+  photoCountPosition: PropTypes.number.isRequired,
   isReported: PropTypes.number.isRequired,
   photoId: PropTypes.number.isRequired,
   updateImageReported: PropTypes.func.isRequired,

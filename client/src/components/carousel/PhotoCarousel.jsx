@@ -48,7 +48,7 @@ const PhotoCarousel = ({
       </CarouselPhotos>
       <RightCarouselBtn
         type="button"
-        listSize={data.photos.length - 3}
+        listSize={data.photos.length - 1}
         pictureIdx={pictureIdx}
         onClick={handleRightButtonClick}
       />

@@ -45,14 +45,14 @@ export const LeftModalBtn = styled(ModalBtn)`
 export const RightModalBtn = styled(ModalBtn)`
   transform: rotate(45deg);
   right: 2%;
-  border-color: ${props => (props.pictureIdx === props.pictureCount - 1
+  border-color: ${props => (props.pictureIdx === props.listSize - 1
     ? 'rgba(255, 255, 255, 0.315)'
     : 'rgba(255, 255, 255, 0.692)')};
 
   &:hover {
-    border-color: ${props => (props.pictureIdx === props.pictureCount - 1
+    border-color: ${props => (props.pictureIdx === props.listSize - 1
     ? 'rgba(255, 255, 255, 0.315)'
     : 'rgb(255, 255, 255)')};
-    cursor: ${props => (props.pictureIdx === props.pictureCount - 1 ? 'default' : 'pointer')};
+    cursor: ${props => (props.pictureIdx === props.listSize - 1 ? 'default' : 'pointer')};
   }
 `;
